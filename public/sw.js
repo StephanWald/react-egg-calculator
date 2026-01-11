@@ -1,10 +1,10 @@
-const CACHE_NAME = 'egg-calculator-v1';
+const CACHE_NAME = 'egg-calculator-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 // Install - cache app shell
