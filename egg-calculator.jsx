@@ -44,6 +44,63 @@ const EggCalculator = () => {
   const [showEnergy, setShowEnergy] = useState(false);
   const [showLangPicker, setShowLangPicker] = useState(false);
 
+  // ============ SETTINGS PERSISTENCE ============
+  const STORAGE_KEY = 'egg-calculator-settings';
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const settings = JSON.parse(saved);
+        // Working inputs
+        if (settings.weight !== undefined) setWeight(settings.weight);
+        if (settings.startTemp !== undefined) setStartTemp(settings.startTemp);
+        if (settings.targetTemp !== undefined) setTargetTemp(settings.targetTemp);
+        if (settings.consistency !== undefined) setConsistency(settings.consistency);
+        if (settings.eggCount !== undefined) setEggCount(settings.eggCount);
+        if (settings.waterVolume !== undefined) setWaterVolume(settings.waterVolume);
+        // Household settings
+        if (settings.stoveType !== undefined) setStoveType(settings.stoveType);
+        if (settings.stovePower !== undefined) setStovePower(settings.stovePower);
+        if (settings.stoveEfficiency !== undefined) setStoveEfficiency(settings.stoveEfficiency);
+        if (settings.potWeight !== undefined) setPotWeight(settings.potWeight);
+        if (settings.potMaterial !== undefined) setPotMaterial(settings.potMaterial);
+        if (settings.waterStartTemp !== undefined) setWaterStartTemp(settings.waterStartTemp);
+        if (settings.ambientTemp !== undefined) setAmbientTemp(settings.ambientTemp);
+        // Location & pressure
+        if (settings.altitude !== undefined) setAltitude(settings.altitude);
+        if (settings.pressure !== undefined) setPressure(settings.pressure);
+        if (settings.boilingPoint !== undefined) setBoilingPoint(settings.boilingPoint);
+        if (settings.locationName !== undefined) setLocationName(settings.locationName);
+        if (settings.pressureSource !== undefined) setPressureSource(settings.pressureSource);
+      }
+    } catch (e) {
+      console.error('Failed to load settings:', e);
+    }
+  }, []);
+
+  // Save settings to localStorage when they change
+  useEffect(() => {
+    try {
+      const settings = {
+        // Working inputs
+        weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
+        // Household settings
+        stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
+        // Location & pressure
+        altitude, pressure, boilingPoint, locationName, pressureSource,
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    } catch (e) {
+      console.error('Failed to save settings:', e);
+    }
+  }, [
+    weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
+    stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
+    altitude, pressure, boilingPoint, locationName, pressureSource,
+  ]);
+
   // ============ CONSTANTS & PRESETS ============
 
   const stoveTypes = [
