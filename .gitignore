@@ -32,3 +32,6 @@ pnpm-debug.log*
 # Claude Code
 .claude/
 CLAUDE.md
+
+# Auto Claude data directory
+.auto-claude/

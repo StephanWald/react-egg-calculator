@@ -1,0 +1,39 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read(./**)",
+      "Write(./**)",
+      "Edit(./**)",
+      "Glob(./**)",
+      "Grep(./**)",
+      "Read(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Write(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Edit(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Glob(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Grep(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Read(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/.auto-claude/specs/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Write(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/.auto-claude/specs/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Edit(/Users/beff/egg/.auto-claude/worktrees/tasks/001-add-a-switcher-toggle-next-to-the-language-selecto/.auto-claude/specs/001-add-a-switcher-toggle-next-to-the-language-selecto/**)",
+      "Read(/Users/beff/egg/.auto-claude/**)",
+      "Write(/Users/beff/egg/.auto-claude/**)",
+      "Edit(/Users/beff/egg/.auto-claude/**)",
+      "Glob(/Users/beff/egg/.auto-claude/**)",
+      "Grep(/Users/beff/egg/.auto-claude/**)",
+      "Bash(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "mcp__context7__resolve-library-id(*)",
+      "mcp__context7__get-library-docs(*)",
+      "mcp__graphiti-memory__search_nodes(*)",
+      "mcp__graphiti-memory__search_facts(*)",
+      "mcp__graphiti-memory__add_episode(*)",
+      "mcp__graphiti-memory__get_episodes(*)",
+      "mcp__graphiti-memory__get_entity_edge(*)"
+    ]
+  }
+}

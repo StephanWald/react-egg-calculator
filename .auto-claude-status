@@ -1,0 +1,25 @@
+{
+  "active": true,
+  "spec": "001-add-a-switcher-toggle-next-to-the-language-selecto",
+  "state": "building",
+  "subtasks": {
+    "completed": 0,
+    "total": 1,
+    "in_progress": 1,
+    "failed": 0
+  },
+  "phase": {
+    "current": "Implementation",
+    "id": 1,
+    "total": 1
+  },
+  "workers": {
+    "active": 0,
+    "max": 1
+  },
+  "session": {
+    "number": 1,
+    "started_at": "2026-01-21T08:17:36.892576"
+  },
+  "last_update": "2026-01-21T08:17:36.949208"
+}
