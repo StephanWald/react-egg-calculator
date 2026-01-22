@@ -543,6 +543,13 @@ const EggCalculator = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const formatTimerDisplay = (seconds) => {
+    if (seconds === null) return '--:--';
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const formatCountdown = (seconds) => {
     if (seconds === null || seconds < 0) return '00:00';
     const mins = Math.floor(seconds / 60);
