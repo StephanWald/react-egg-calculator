@@ -88,6 +88,8 @@ const EggCalculator = () => {
         if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
         if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
         if (settings.weightUnit !== undefined) setWeightUnit(settings.weightUnit);
+        // Notification permission
+        if (settings.notificationPermission !== undefined) setNotificationPermission(settings.notificationPermission);
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -106,6 +108,8 @@ const EggCalculator = () => {
         altitude, pressure, boilingPoint, locationName, pressureSource,
         // Unit preferences
         tempUnit, volumeUnit, weightUnit,
+        // Notification permission
+        notificationPermission,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -116,7 +120,15 @@ const EggCalculator = () => {
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
     tempUnit, volumeUnit, weightUnit,
+    notificationPermission,
   ]);
+
+  // ============ NOTIFICATION PERMISSION CHECK ============
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission !== 'default') {
+      setNotificationPermission(Notification.permission);
+    }
+  }, []);
 
   // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
   useEffect(() => {
@@ -377,6 +389,28 @@ const EggCalculator = () => {
       setTotalEnergy(null);
       setHeatingTime(null);
     }
+  };
+
+  // ============ TIMER HANDLERS ============
+
+  const handleStartTimer = async () => {
+    if (!cookingTime) return;
+
+    // Request notification permission if not yet determined
+    if ('Notification' in window && notificationPermission === 'default') {
+      try {
+        const permission = await Notification.requestPermission();
+        setNotificationPermission(permission);
+      } catch (error) {
+        // Handle browsers that don't support promise-based requestPermission
+        setNotificationPermission('denied');
+      }
+    }
+
+    // Start the timer
+    const timeInSeconds = Math.round(cookingTime * 60);
+    setTimerRemaining(timeInSeconds);
+    setTimerRunning(true);
   };
 
   // ============ HELPERS ============
@@ -751,10 +785,11 @@ const EggCalculator = () => {
 
             {/* Start Timer Button */}
             <button
-              disabled={!cookingTime}
+              onClick={handleStartTimer}
+              disabled={!cookingTime || timerRunning}
               className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              ⏱️ Start Timer
+              ⏱️ {timerRunning ? 'Timer Running' : 'Start Timer'}
             </button>
           </div>
 
