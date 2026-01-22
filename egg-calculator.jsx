@@ -823,7 +823,12 @@ const EggCalculator = () => {
             {/* Reset Button */}
             <div className="mt-6 pt-4 border-t border-gray-200">
               <button
-                onClick={handleResetToDefaults}
+                onClick={() => {
+                  const message = `${t('resetConfirm')}\n\n${t('resetWarning')}`;
+                  if (window.confirm(message)) {
+                    handleResetToDefaults();
+                  }
+                }}
                 className="w-full py-2 px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm"
               >
                 🔄 {t('resetToDefaults')}
