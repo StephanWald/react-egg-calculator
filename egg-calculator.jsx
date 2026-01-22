@@ -501,6 +501,14 @@ const EggCalculator = () => {
     return `${weightG}g`;
   };
 
+  const formatPressure = (pressureHPa) => {
+    if (pressureUnit === 'inHg') {
+      const pressureInHg = Math.round(pressureHPa * 0.02953 * 100) / 100;
+      return `${pressureInHg} inHg`;
+    }
+    return `${pressureHPa} hPa`;
+  };
+
   const getEggVisualization = () => {
     const yolkSize = consistency === 'soft' ? 45 : consistency === 'medium' ? 40 : consistency === 'hard-medium' ? 35 : 30;
     const yolkColor = consistencyOptions.find(c => c.id === consistency)?.color || '#FFD700';
