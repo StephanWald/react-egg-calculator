@@ -393,6 +393,13 @@ const EggCalculator = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const formatCountdown = (seconds) => {
+    if (seconds === null || seconds < 0) return '00:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   // ============ UNIT CONVERSION HELPERS ============
   const formatTemp = (tempC) => {
     if (tempUnit === 'F') {
@@ -726,6 +733,18 @@ const EggCalculator = () => {
                 </div>
                 <div className="text-blue-600 text-xs mt-1">
                   {t('effectiveTemp')}: ~{formatTemp(effectiveTemp)}
+                </div>
+              </div>
+            )}
+
+            {/* Timer Countdown Display */}
+            {timerRunning && timerRemaining !== null && (
+              <div className="mt-4 p-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
+                <div className="text-center">
+                  <div className="text-white text-sm font-medium mb-2">⏱️ Time Remaining</div>
+                  <div className="text-6xl font-bold text-white tabular-nums tracking-wider">
+                    {formatCountdown(timerRemaining)}
+                  </div>
                 </div>
               </div>
             )}
