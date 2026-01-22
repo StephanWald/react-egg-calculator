@@ -43,6 +43,7 @@ const EggCalculator = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showEnergy, setShowEnergy] = useState(false);
   const [showLangPicker, setShowLangPicker] = useState(false);
+  const [showConfigDialog, setShowConfigDialog] = useState(false);
 
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
@@ -369,34 +370,15 @@ const EggCalculator = () => {
 
         {/* Header */}
         <div className="text-center mb-6 relative">
-          {/* Language Picker */}
+          {/* Config Dialog Button */}
           <div className="absolute right-0 top-0">
             <button
-              onClick={() => setShowLangPicker(!showLangPicker)}
+              onClick={() => setShowConfigDialog(!showConfigDialog)}
               className="p-2 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg"
-              title="Language"
+              title="Settings"
             >
-              {languages.find(l => l.code === lang)?.flag || '🌐'}
+              ⚙️
             </button>
-            {showLangPicker && (
-              <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-1 z-50">
-                {languages.map((language) => (
-                  <button
-                    key={language.code}
-                    onClick={() => {
-                      setLanguage(language.code);
-                      setShowLangPicker(false);
-                    }}
-                    className={`w-full px-4 py-2 text-left hover:bg-amber-50 flex items-center gap-2 ${
-                      lang === language.code ? 'bg-amber-100' : ''
-                    }`}
-                  >
-                    <span>{language.flag}</span>
-                    <span className="text-sm">{language.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
