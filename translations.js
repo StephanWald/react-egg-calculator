@@ -112,6 +112,12 @@ export const translations = {
 
     // Footer
     footer: 'Williams Formula · Clausius-Clapeyron · Open-Meteo API',
+
+    // Config Dialog
+    configDialogTitle: 'Settings',
+    configTempUnit: 'Temperature Unit',
+    configVolumeUnit: 'Volume Unit',
+    configLanguage: 'Language',
   },
 
   de: {
@@ -224,6 +230,12 @@ export const translations = {
 
     // Footer
     footer: 'Williams-Formel · Clausius-Clapeyron · Open-Meteo API',
+
+    // Config Dialog
+    configDialogTitle: 'Einstellungen',
+    configTempUnit: 'Temperatureinheit',
+    configVolumeUnit: 'Volumeneinheit',
+    configLanguage: 'Sprache',
   },
 
   fr: {
@@ -336,6 +348,12 @@ export const translations = {
 
     // Footer
     footer: 'Formule de Williams · Clausius-Clapeyron · API Open-Meteo',
+
+    // Config Dialog
+    configDialogTitle: 'Paramètres',
+    configTempUnit: 'Unité de température',
+    configVolumeUnit: 'Unité de volume',
+    configLanguage: 'Langue',
   },
 
   es: {
@@ -448,6 +466,12 @@ export const translations = {
 
     // Footer
     footer: 'Fórmula de Williams · Clausius-Clapeyron · API Open-Meteo',
+
+    // Config Dialog
+    configDialogTitle: 'Configuración',
+    configTempUnit: 'Unidad de temperatura',
+    configVolumeUnit: 'Unidad de volumen',
+    configLanguage: 'Idioma',
   },
 
   it: {
@@ -560,6 +584,12 @@ export const translations = {
 
     // Footer
     footer: 'Formula di Williams · Clausius-Clapeyron · API Open-Meteo',
+
+    // Config Dialog
+    configDialogTitle: 'Impostazioni',
+    configTempUnit: 'Unità di temperatura',
+    configVolumeUnit: 'Unità di volume',
+    configLanguage: 'Lingua',
   },
 
   pt: {
@@ -672,6 +702,12 @@ export const translations = {
 
     // Footer
     footer: 'Fórmula de Williams · Clausius-Clapeyron · API Open-Meteo',
+
+    // Config Dialog
+    configDialogTitle: 'Configurações',
+    configTempUnit: 'Unidade de temperatura',
+    configVolumeUnit: 'Unidade de volume',
+    configLanguage: 'Idioma',
   },
 };
 

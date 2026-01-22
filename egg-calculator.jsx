@@ -42,7 +42,6 @@ const EggCalculator = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showEnergy, setShowEnergy] = useState(false);
-  const [showLangPicker, setShowLangPicker] = useState(false);
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
   // ============ UNIT PREFERENCES ============
@@ -418,7 +417,7 @@ const EggCalculator = () => {
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-6 z-50 w-80 max-w-[90vw]">
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-bold text-gray-800">⚙️ Settings</h2>
+                <h2 className="text-lg font-bold text-gray-800">⚙️ {t('configDialogTitle')}</h2>
                 <button
                   onClick={() => setShowConfigDialog(false)}
                   className="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-gray-700"
@@ -429,7 +428,7 @@ const EggCalculator = () => {
 
               {/* Temperature Unit */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Temperature Unit</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configTempUnit')}</label>
                 <button
                   onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
                   className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
@@ -442,7 +441,7 @@ const EggCalculator = () => {
 
               {/* Volume Unit */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Volume Unit</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configVolumeUnit')}</label>
                 <button
                   onClick={() => setVolumeUnit(volumeUnit === 'L' ? 'oz' : 'L')}
                   className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
@@ -455,7 +454,7 @@ const EggCalculator = () => {
 
               {/* Language */}
               <div className="mb-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configLanguage')}</label>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((language) => (
                     <button
