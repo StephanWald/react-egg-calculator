@@ -132,16 +132,25 @@ const EggCalculator = () => {
     }
   }, []);
 
-  // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
+  // ============ ESCAPE KEY HANDLER (Config Dialog & Timer) ============
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && showConfigDialog) {
-        setShowConfigDialog(false);
+      if (e.key === 'Escape') {
+        // Timer takes priority - stop it if active
+        if (timerActive) {
+          setTimerActive(false);
+          setTimerRemaining(null);
+          return;
+        }
+        // Otherwise close config dialog
+        if (showConfigDialog) {
+          setShowConfigDialog(false);
+        }
       }
     };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [showConfigDialog]);
+  }, [showConfigDialog, timerActive]);
 
   // ============ TIMER COUNTDOWN LOGIC ============
   useEffect(() => {
