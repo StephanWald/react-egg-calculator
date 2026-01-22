@@ -45,8 +45,10 @@ const EggCalculator = () => {
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
   // ============ TIMER STATE ============
-  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerPaused, setTimerPaused] = useState(false);
   const [timerRemaining, setTimerRemaining] = useState(null);
+  const [timerComplete, setTimerComplete] = useState(false);
   const [notificationPermission, setNotificationPermission] = useState('default');
 
   // ============ UNIT PREFERENCES ============
@@ -143,14 +145,14 @@ const EggCalculator = () => {
 
   // ============ TIMER COUNTDOWN LOGIC ============
   useEffect(() => {
-    if (!timerRunning || timerRemaining === null || timerRemaining <= 0) {
+    if (!timerActive || timerRemaining === null || timerRemaining <= 0) {
       return;
     }
 
     const interval = setInterval(() => {
       setTimerRemaining((prev) => {
         if (prev === null || prev <= 1) {
-          setTimerRunning(false);
+          setTimerActive(false);
           return 0;
         }
         return prev - 1;
@@ -158,11 +160,11 @@ const EggCalculator = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerRunning]);
+  }, [timerActive]);
 
   // ============ TIMER COMPLETION NOTIFICATION ============
   useEffect(() => {
-    if (timerRemaining === 0 && !timerRunning) {
+    if (timerRemaining === 0 && !timerActive) {
       // Send browser notification
       if ('Notification' in window && notificationPermission === 'granted') {
         const notification = new Notification(`🥚 ${t('notificationTitle')}`, {
@@ -193,7 +195,7 @@ const EggCalculator = () => {
         // Audio not supported or failed to load
       }
     }
-  }, [timerRemaining, timerRunning, notificationPermission]);
+  }, [timerRemaining, timerActive, notificationPermission]);
 
   // ============ CONSTANTS & PRESETS ============
 
@@ -445,11 +447,11 @@ const EggCalculator = () => {
     // Start the timer
     const timeInSeconds = Math.round(cookingTime * 60);
     setTimerRemaining(timeInSeconds);
-    setTimerRunning(true);
+    setTimerActive(true);
   };
 
   const handleStopTimer = () => {
-    setTimerRunning(false);
+    setTimerActive(false);
     setTimerRemaining(null);
   };
 
@@ -812,7 +814,7 @@ const EggCalculator = () => {
             )}
 
             {/* Timer Countdown Display */}
-            {timerRunning && timerRemaining !== null && (
+            {timerActive && timerRemaining !== null && (
               <div className="mt-4 p-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
                 <div className="text-center">
                   <div className="text-white text-sm font-medium mb-2">⏱️ {t('timerRemaining')}</div>
@@ -825,11 +827,11 @@ const EggCalculator = () => {
 
             {/* Start Timer Button */}
             <button
-              onClick={timerRunning ? handleStopTimer : handleStartTimer}
-              disabled={!cookingTime && !timerRunning}
+              onClick={timerActive ? handleStopTimer : handleStartTimer}
+              disabled={!cookingTime && !timerActive}
               className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              ⏱️ {timerRunning ? t('timerStop') : t('timerStart')}
+              ⏱️ {timerActive ? t('timerStop') : t('timerStart')}
             </button>
           </div>
 
