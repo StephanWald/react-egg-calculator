@@ -45,8 +45,10 @@ const EggCalculator = () => {
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
   // ============ TIMER STATE ============
-  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerPaused, setTimerPaused] = useState(false);
   const [timerRemaining, setTimerRemaining] = useState(null);
+  const [timerComplete, setTimerComplete] = useState(false);
   const [notificationPermission, setNotificationPermission] = useState('default');
 
   // ============ UNIT PREFERENCES ============
@@ -130,27 +132,46 @@ const EggCalculator = () => {
     }
   }, []);
 
-  // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
+  // ============ ESCAPE KEY HANDLER (Config Dialog & Timer) ============
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && showConfigDialog) {
-        setShowConfigDialog(false);
+      if (e.key === 'Escape') {
+        // Timer takes priority - stop it if active or complete
+        if (timerActive) {
+          setTimerActive(false);
+          setTimerPaused(false);
+          setTimerRemaining(null);
+          setTimerComplete(false);
+          return;
+        }
+        // Dismiss timer complete overlay
+        if (timerComplete) {
+          setTimerComplete(false);
+          setTimerRemaining(null);
+          return;
+        }
+        // Otherwise close config dialog
+        if (showConfigDialog) {
+          setShowConfigDialog(false);
+        }
       }
     };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [showConfigDialog]);
+  }, [showConfigDialog, timerActive, timerComplete]);
 
   // ============ TIMER COUNTDOWN LOGIC ============
   useEffect(() => {
-    if (!timerRunning || timerRemaining === null || timerRemaining <= 0) {
+    if (!timerActive || timerPaused || timerRemaining === null || timerRemaining <= 0) {
       return;
     }
 
     const interval = setInterval(() => {
       setTimerRemaining((prev) => {
         if (prev === null || prev <= 1) {
-          setTimerRunning(false);
+          setTimerComplete(true);
+          setTimerActive(false);
+          playTimerSound();
           return 0;
         }
         return prev - 1;
@@ -158,11 +179,11 @@ const EggCalculator = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerRunning]);
+  }, [timerActive, timerPaused]);
 
   // ============ TIMER COMPLETION NOTIFICATION ============
   useEffect(() => {
-    if (timerRemaining === 0 && !timerRunning) {
+    if (timerRemaining === 0 && !timerActive) {
       // Send browser notification
       if ('Notification' in window && notificationPermission === 'granted') {
         const notification = new Notification(`🥚 ${t('notificationTitle')}`, {
@@ -193,7 +214,7 @@ const EggCalculator = () => {
         // Audio not supported or failed to load
       }
     }
-  }, [timerRemaining, timerRunning, notificationPermission]);
+  }, [timerRemaining, timerActive, notificationPermission]);
 
   // ============ CONSTANTS & PRESETS ============
 
@@ -445,12 +466,75 @@ const EggCalculator = () => {
     // Start the timer
     const timeInSeconds = Math.round(cookingTime * 60);
     setTimerRemaining(timeInSeconds);
-    setTimerRunning(true);
+    setTimerActive(true);
   };
 
   const handleStopTimer = () => {
-    setTimerRunning(false);
+    setTimerActive(false);
     setTimerRemaining(null);
+  };
+
+  // Core timer control functions
+  const startTimer = (durationSeconds) => {
+    setTimerRemaining(durationSeconds);
+    setTimerPaused(false);
+    setTimerComplete(false);
+    setTimerActive(true);
+  };
+
+  const stopTimer = () => {
+    setTimerActive(false);
+    setTimerPaused(false);
+    setTimerRemaining(null);
+    setTimerComplete(false);
+  };
+
+  const pauseTimer = () => {
+    if (timerActive && !timerPaused) {
+      setTimerPaused(true);
+    }
+  };
+
+  const resumeTimer = () => {
+    if (timerActive && timerPaused) {
+      setTimerPaused(false);
+    }
+  };
+
+  // ============ AUDIO HELPERS ============
+
+  const playTimerSound = () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+      // Play a sequence of beeps for emphasis
+      const playBeep = (startTime, frequency) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = frequency;
+        oscillator.type = 'sine';
+
+        // Fade in and out for a pleasant sound
+        gainNode.gain.setValueAtTime(0, startTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, startTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+
+        oscillator.start(startTime);
+        oscillator.stop(startTime + 0.4);
+      };
+
+      // Play 3 beeps with increasing frequency
+      const now = audioContext.currentTime;
+      playBeep(now, 800);
+      playBeep(now + 0.5, 900);
+      playBeep(now + 1.0, 1000);
+    } catch (e) {
+      // Web Audio API not supported or failed - silent fallback
+    }
   };
 
   // ============ HELPERS ============
@@ -464,6 +548,13 @@ const EggCalculator = () => {
     if (minutes === null) return '--:--';
     const mins = Math.floor(minutes);
     const secs = Math.round((minutes - mins) * 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const formatTimerDisplay = (seconds) => {
+    if (seconds === null) return '--:--';
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
@@ -616,6 +707,74 @@ const EggCalculator = () => {
                     </button>
                   ))}
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ============ TIMER OVERLAY ============ */}
+        {(timerActive || timerComplete) && (
+          <>
+            {/* Backdrop - does NOT close on click (unlike config dialog) */}
+            <div className="fixed inset-0 bg-black bg-opacity-70 z-50" />
+            {/* Timer Overlay */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center">
+                {timerComplete ? (
+                  <>
+                    {/* Timer Complete State */}
+                    <div className="text-6xl mb-4">🥚</div>
+                    <h2 className="text-2xl font-bold text-amber-900 mb-2">{t('timerComplete')}</h2>
+                    <p className="text-gray-600 mb-6">{t('notificationBody')}</p>
+                    <button
+                      onClick={() => {
+                        setTimerComplete(false);
+                        setTimerRemaining(null);
+                      }}
+                      className="w-full py-4 px-6 bg-amber-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-amber-600 transition-colors"
+                    >
+                      ✓ {t('timerDismiss')}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {/* Timer Running State */}
+                    <div className="text-white text-sm font-medium mb-2 text-amber-600">⏱️ {t('timerRemaining')}</div>
+                    <div className="text-7xl font-bold text-amber-900 tabular-nums tracking-wider mb-8">
+                      {formatCountdown(timerRemaining)}
+                    </div>
+
+                    {/* Timer Controls */}
+                    <div className="flex gap-3">
+                      {/* Pause/Resume Button */}
+                      <button
+                        onClick={timerPaused ? resumeTimer : pauseTimer}
+                        className={`flex-1 py-4 px-6 text-lg font-bold rounded-xl shadow-lg transition-colors ${
+                          timerPaused
+                            ? 'bg-green-500 text-white hover:bg-green-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {timerPaused ? `▶ ${t('timerResume')}` : `⏸ ${t('timerPause')}`}
+                      </button>
+
+                      {/* Stop Button */}
+                      <button
+                        onClick={stopTimer}
+                        className="flex-1 py-4 px-6 bg-red-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-red-600 transition-colors"
+                      >
+                        ⏹ {t('timerStop')}
+                      </button>
+                    </div>
+
+                    {/* Paused indicator */}
+                    {timerPaused && (
+                      <div className="mt-4 text-amber-600 font-medium animate-pulse">
+                        ⏸ {t('timerPause')}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </>
@@ -812,7 +971,7 @@ const EggCalculator = () => {
             )}
 
             {/* Timer Countdown Display */}
-            {timerRunning && timerRemaining !== null && (
+            {timerActive && timerRemaining !== null && (
               <div className="mt-4 p-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
                 <div className="text-center">
                   <div className="text-white text-sm font-medium mb-2">⏱️ {t('timerRemaining')}</div>
@@ -825,11 +984,11 @@ const EggCalculator = () => {
 
             {/* Start Timer Button */}
             <button
-              onClick={timerRunning ? handleStopTimer : handleStartTimer}
-              disabled={!cookingTime && !timerRunning}
+              onClick={timerActive ? handleStopTimer : handleStartTimer}
+              disabled={!cookingTime && !timerActive}
               className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              ⏱️ {timerRunning ? t('timerStop') : t('timerStart')}
+              ⏱️ {timerActive ? t('timerStop') : t('timerStart')}
             </button>
           </div>
 
