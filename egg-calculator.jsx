@@ -367,6 +367,23 @@ const EggCalculator = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // ============ UNIT CONVERSION HELPERS ============
+  const formatTemp = (tempC) => {
+    if (tempUnit === 'F') {
+      const tempF = Math.round(tempC * 9 / 5 + 32);
+      return `${tempF}°F`;
+    }
+    return `${tempC}°C`;
+  };
+
+  const formatVolume = (volumeL) => {
+    if (volumeUnit === 'oz') {
+      const volumeOz = Math.round(volumeL * 33.814 * 10) / 10;
+      return `${volumeOz} oz`;
+    }
+    return `${volumeL}L`;
+  };
+
   const getEggVisualization = () => {
     const yolkSize = consistency === 'soft' ? 45 : consistency === 'medium' ? 40 : consistency === 'hard-medium' ? 35 : 30;
     const yolkColor = consistencyOptions.find(c => c.id === consistency)?.color || '#FFD700';
@@ -486,7 +503,7 @@ const EggCalculator = () => {
             <span className="font-medium">{t('settingsToggle')}</span>
             {!showSettings && (
               <span className="text-sm text-gray-500">
-                ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)}, {ambientTemp}°C)
+                ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)}, {formatTemp(ambientTemp)})
               </span>
             )}
           </span>
@@ -592,11 +609,11 @@ const EggCalculator = () => {
                       onChange={(e) => setWaterStartTemp(Number(e.target.value))}
                       className="flex-1 h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
                     />
-                    <span className="text-sm font-bold text-blue-700 w-12 text-right">{waterStartTemp}°C</span>
+                    <span className="text-sm font-bold text-blue-700 w-14 text-right">{formatTemp(waterStartTemp)}</span>
                   </div>
                   <div className="flex justify-between text-xs text-blue-500 mt-1">
-                    <span>{t('waterTempCold')} 2°C</span>
-                    <span>{t('waterTempWarm')} 40°C</span>
+                    <span>{t('waterTempCold')} {formatTemp(2)}</span>
+                    <span>{t('waterTempWarm')} {formatTemp(40)}</span>
                   </div>
                 </div>
 
@@ -616,11 +633,11 @@ const EggCalculator = () => {
                       onChange={(e) => setAmbientTemp(Number(e.target.value))}
                       className="flex-1 h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
                     />
-                    <span className="text-sm font-bold text-orange-700 w-12 text-right">{ambientTemp}°C</span>
+                    <span className="text-sm font-bold text-orange-700 w-14 text-right">{formatTemp(ambientTemp)}</span>
                   </div>
                   <div className="flex justify-between text-xs text-orange-500 mt-1">
-                    <span>{t('ambientWinter')} -10°C</span>
-                    <span>{t('ambientSummer')} 35°C</span>
+                    <span>{t('ambientWinter')} {formatTemp(-10)}</span>
+                    <span>{t('ambientSummer')} {formatTemp(35)}</span>
                   </div>
                 </div>
               </div>
@@ -658,10 +675,10 @@ const EggCalculator = () => {
             {tempDrop !== null && tempDrop > 2 && (
               <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-center">
                 <div className="text-blue-800">
-                  ⚠️ {t('tempDropWarning')} <span className="font-bold">{tempDrop}°C</span> {t('tempDropUnit')}
+                  ⚠️ {t('tempDropWarning')} <span className="font-bold">{tempUnit === 'F' ? Math.round(tempDrop * 9 / 5) : tempDrop}°{tempUnit}</span> {t('tempDropUnit')}
                 </div>
                 <div className="text-blue-600 text-xs mt-1">
-                  {t('effectiveTemp')}: ~{effectiveTemp}°C
+                  {t('effectiveTemp')}: ~{formatTemp(effectiveTemp)}
                 </div>
               </div>
             )}
@@ -702,7 +719,7 @@ const EggCalculator = () => {
               <div>
                 <div className="text-xs text-sky-700 mb-1">{t('boilingPoint')}</div>
                 <div className="flex items-center justify-center h-8 bg-white rounded-lg border border-sky-200">
-                  <span className="text-lg font-bold text-sky-700">{boilingPoint}°C</span>
+                  <span className="text-lg font-bold text-sky-700">{formatTemp(boilingPoint)}</span>
                 </div>
               </div>
               <div>
@@ -740,7 +757,7 @@ const EggCalculator = () => {
                 >
                   <div className="w-3 h-3 rounded-full mx-auto mb-1" style={{ backgroundColor: option.color }}></div>
                   <div className="font-medium text-gray-900 text-xs">{t(option.nameKey)}</div>
-                  <div className="text-xs text-gray-500">{option.temp}°C</div>
+                  <div className="text-xs text-gray-500">{formatTemp(option.temp)}</div>
                 </button>
               ))}
             </div>
@@ -771,7 +788,7 @@ const EggCalculator = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t('waterVolume')}: <span className="font-bold text-amber-600">{waterVolume}L</span>
+                {t('waterVolume')}: <span className="font-bold text-amber-600">{formatVolume(waterVolume)}</span>
               </label>
               <input
                 type="range"
@@ -819,7 +836,7 @@ const EggCalculator = () => {
           {/* Start Temperature */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('startTemp')}: <span className="font-bold text-amber-600">{startTemp}°C</span>
+              {t('startTemp')}: <span className="font-bold text-amber-600">{formatTemp(startTemp)}</span>
             </label>
             <div className="grid grid-cols-3 gap-2">
               {startTempOptions.map((option) => (
@@ -834,7 +851,7 @@ const EggCalculator = () => {
                 >
                   <div className="text-xl mb-1">{option.icon}</div>
                   <div className="text-xs font-medium">{t(option.nameKey)}</div>
-                  <div className="text-xs text-gray-500">{option.temp}°C</div>
+                  <div className="text-xs text-gray-500">{formatTemp(option.temp)}</div>
                 </button>
               ))}
             </div>
@@ -874,7 +891,7 @@ const EggCalculator = () => {
 
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="bg-white p-3 rounded-lg">
-                  <div className="text-emerald-600 text-xs">{t('heatingPhase')} ({waterStartTemp}°C → {boilingPoint}°C)</div>
+                  <div className="text-emerald-600 text-xs">{t('heatingPhase')} ({formatTemp(waterStartTemp)} → {formatTemp(boilingPoint)})</div>
                   <div className="text-xl font-bold text-emerald-800">~{heatingTime} min</div>
                   <div className="text-xs text-gray-500">
                     {t('atPower')} {stovePower}W ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)})
@@ -889,7 +906,7 @@ const EggCalculator = () => {
 
               {ambientTemp < 15 && (
                 <div className="mt-2 text-xs text-emerald-700">
-                  {t('includesHeatLoss')} {ambientTemp}°C {t('ambient')}
+                  {t('includesHeatLoss')} {formatTemp(ambientTemp)} {t('ambient')}
                 </div>
               )}
             </div>
