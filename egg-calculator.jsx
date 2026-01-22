@@ -45,6 +45,10 @@ const EggCalculator = () => {
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
+  // ============ UNIT PREFERENCES ============
+  const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
+  const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
+
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
 
@@ -101,6 +105,17 @@ const EggCalculator = () => {
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
   ]);
+
+  // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showConfigDialog) {
+        setShowConfigDialog(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [showConfigDialog]);
 
   // ============ CONSTANTS & PRESETS ============
 
@@ -384,6 +399,77 @@ const EggCalculator = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
           <p className="text-amber-700">{t('subtitle')}</p>
         </div>
+
+        {/* ============ CONFIG DIALOG ============ */}
+        {showConfigDialog && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setShowConfigDialog(false)}
+            />
+            {/* Dialog */}
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-6 z-50 w-80 max-w-[90vw]">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-800">⚙️ Settings</h2>
+                <button
+                  onClick={() => setShowConfigDialog(false)}
+                  className="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Temperature Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Temperature Unit</label>
+                <button
+                  onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={tempUnit === 'C' ? 'text-amber-600' : 'text-gray-400'}>°C</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={tempUnit === 'F' ? 'text-amber-600' : 'text-gray-400'}>°F</span>
+                </button>
+              </div>
+
+              {/* Volume Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Volume Unit</label>
+                <button
+                  onClick={() => setVolumeUnit(volumeUnit === 'L' ? 'oz' : 'L')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={volumeUnit === 'L' ? 'text-amber-600' : 'text-gray-400'}>L</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={volumeUnit === 'oz' ? 'text-amber-600' : 'text-gray-400'}>oz</span>
+                </button>
+              </div>
+
+              {/* Language */}
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => setLanguage(language.code)}
+                      className={`p-2 rounded-lg border-2 transition-all text-sm ${
+                        lang === language.code
+                          ? 'border-amber-500 bg-amber-50'
+                          : 'border-gray-200 hover:border-amber-300'
+                      }`}
+                    >
+                      <span className="mr-1">{language.flag}</span>
+                      <span>{language.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Settings Toggle */}
         <button
