@@ -79,6 +79,9 @@ const EggCalculator = () => {
         if (settings.boilingPoint !== undefined) setBoilingPoint(settings.boilingPoint);
         if (settings.locationName !== undefined) setLocationName(settings.locationName);
         if (settings.pressureSource !== undefined) setPressureSource(settings.pressureSource);
+        // Unit preferences
+        if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
+        if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -95,6 +98,8 @@ const EggCalculator = () => {
         stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
         // Location & pressure
         altitude, pressure, boilingPoint, locationName, pressureSource,
+        // Unit preferences
+        tempUnit, volumeUnit,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -104,6 +109,7 @@ const EggCalculator = () => {
     weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
+    tempUnit, volumeUnit,
   ]);
 
   // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
