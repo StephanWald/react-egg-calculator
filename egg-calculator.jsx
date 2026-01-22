@@ -195,6 +195,49 @@ const EggCalculator = () => {
     }
   }, [timerRemaining, timerRunning, notificationPermission]);
 
+  // ============ RESET FUNCTION ============
+  const handleResetToDefaults = () => {
+    // Clear localStorage
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      // localStorage not available or error removing item
+    }
+
+    // Reset all state to defaults
+    // Working inputs
+    setWeight(60);
+    setStartTemp(4);
+    setTargetTemp(67);
+    setConsistency('medium');
+    setEggCount(1);
+    setWaterVolume(1.5);
+
+    // Household settings
+    setStoveType('induction');
+    setStovePower(2000);
+    setStoveEfficiency(0.87);
+    setPotWeight(0.8);
+    setPotMaterial('steel');
+    setWaterStartTemp(15);
+    setAmbientTemp(22);
+
+    // Location & pressure
+    setAltitude(0);
+    setPressure(1013.25);
+    setBoilingPoint(100);
+    setLocationName(null);
+    setPressureSource('default');
+
+    // Unit preferences
+    setTempUnit('C');
+    setVolumeUnit('L');
+    setWeightUnit('g');
+
+    // Notification permission (don't reset - it's determined by browser)
+    // notificationPermission is read-only from browser state
+  };
+
   // ============ CONSTANTS & PRESETS ============
 
   const stoveTypes = [
