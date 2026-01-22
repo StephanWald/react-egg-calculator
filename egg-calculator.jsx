@@ -878,14 +878,17 @@ const EggCalculator = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <div className="text-xs text-sky-700 mb-1">{t('airPressure')}</div>
-                <div className="flex items-center gap-1">
-                  <input
-                    type="number"
-                    value={pressure}
-                    onChange={(e) => handleManualPressure(Number(e.target.value))}
-                    className="w-full px-2 py-1.5 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                  />
-                  <span className="text-xs text-sky-700">hPa</span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="number"
+                      value={pressure}
+                      onChange={(e) => handleManualPressure(Number(e.target.value))}
+                      className="w-full px-2 py-1.5 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+                    />
+                    <span className="text-xs text-sky-700">hPa</span>
+                  </div>
+                  <div className="text-xs text-sky-600 font-medium">{formatPressure(pressure)}</div>
                 </div>
               </div>
               <div>
