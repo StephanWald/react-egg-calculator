@@ -42,7 +42,11 @@ const EggCalculator = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showEnergy, setShowEnergy] = useState(false);
-  const [showLangPicker, setShowLangPicker] = useState(false);
+  const [showConfigDialog, setShowConfigDialog] = useState(false);
+
+  // ============ UNIT PREFERENCES ============
+  const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
+  const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
 
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
@@ -74,6 +78,9 @@ const EggCalculator = () => {
         if (settings.boilingPoint !== undefined) setBoilingPoint(settings.boilingPoint);
         if (settings.locationName !== undefined) setLocationName(settings.locationName);
         if (settings.pressureSource !== undefined) setPressureSource(settings.pressureSource);
+        // Unit preferences
+        if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
+        if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -90,6 +97,8 @@ const EggCalculator = () => {
         stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
         // Location & pressure
         altitude, pressure, boilingPoint, locationName, pressureSource,
+        // Unit preferences
+        tempUnit, volumeUnit,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -99,7 +108,19 @@ const EggCalculator = () => {
     weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
+    tempUnit, volumeUnit,
   ]);
+
+  // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showConfigDialog) {
+        setShowConfigDialog(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [showConfigDialog]);
 
   // ============ CONSTANTS & PRESETS ============
 
@@ -346,6 +367,23 @@ const EggCalculator = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // ============ UNIT CONVERSION HELPERS ============
+  const formatTemp = (tempC) => {
+    if (tempUnit === 'F') {
+      const tempF = Math.round(tempC * 9 / 5 + 32);
+      return `${tempF}°F`;
+    }
+    return `${tempC}°C`;
+  };
+
+  const formatVolume = (volumeL) => {
+    if (volumeUnit === 'oz') {
+      const volumeOz = Math.round(volumeL * 33.814 * 10) / 10;
+      return `${volumeOz} oz`;
+    }
+    return `${volumeL}L`;
+  };
+
   const getEggVisualization = () => {
     const yolkSize = consistency === 'soft' ? 45 : consistency === 'medium' ? 40 : consistency === 'hard-medium' ? 35 : 30;
     const yolkColor = consistencyOptions.find(c => c.id === consistency)?.color || '#FFD700';
@@ -369,39 +407,91 @@ const EggCalculator = () => {
 
         {/* Header */}
         <div className="text-center mb-6 relative">
-          {/* Language Picker */}
+          {/* Config Dialog Button */}
           <div className="absolute right-0 top-0">
             <button
-              onClick={() => setShowLangPicker(!showLangPicker)}
+              onClick={() => setShowConfigDialog(!showConfigDialog)}
               className="p-2 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg"
-              title="Language"
+              title="Settings"
             >
-              {languages.find(l => l.code === lang)?.flag || '🌐'}
+              ⚙️
             </button>
-            {showLangPicker && (
-              <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 py-1 z-50">
-                {languages.map((language) => (
-                  <button
-                    key={language.code}
-                    onClick={() => {
-                      setLanguage(language.code);
-                      setShowLangPicker(false);
-                    }}
-                    className={`w-full px-4 py-2 text-left hover:bg-amber-50 flex items-center gap-2 ${
-                      lang === language.code ? 'bg-amber-100' : ''
-                    }`}
-                  >
-                    <span>{language.flag}</span>
-                    <span className="text-sm">{language.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
           <p className="text-amber-700">{t('subtitle')}</p>
         </div>
+
+        {/* ============ CONFIG DIALOG ============ */}
+        {showConfigDialog && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setShowConfigDialog(false)}
+            />
+            {/* Dialog */}
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-6 z-50 w-80 max-w-[90vw]">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-800">⚙️ {t('configDialogTitle')}</h2>
+                <button
+                  onClick={() => setShowConfigDialog(false)}
+                  className="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Temperature Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configTempUnit')}</label>
+                <button
+                  onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={tempUnit === 'C' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>°C</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={tempUnit === 'F' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>°F</span>
+                </button>
+              </div>
+
+              {/* Volume Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configVolumeUnit')}</label>
+                <button
+                  onClick={() => setVolumeUnit(volumeUnit === 'L' ? 'oz' : 'L')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={volumeUnit === 'L' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>L</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={volumeUnit === 'oz' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>oz</span>
+                </button>
+              </div>
+
+              {/* Language */}
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configLanguage')}</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => setLanguage(language.code)}
+                      className={`p-2 rounded-lg border-2 transition-all text-sm ${
+                        lang === language.code
+                          ? 'border-amber-500 bg-amber-50'
+                          : 'border-gray-200 hover:border-amber-300'
+                      }`}
+                    >
+                      <span className="mr-1">{language.flag}</span>
+                      <span>{language.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Settings Toggle */}
         <button
@@ -413,7 +503,7 @@ const EggCalculator = () => {
             <span className="font-medium">{t('settingsToggle')}</span>
             {!showSettings && (
               <span className="text-sm text-gray-500">
-                ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)}, {ambientTemp}°C)
+                ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)}, {formatTemp(ambientTemp)})
               </span>
             )}
           </span>
@@ -519,11 +609,11 @@ const EggCalculator = () => {
                       onChange={(e) => setWaterStartTemp(Number(e.target.value))}
                       className="flex-1 h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
                     />
-                    <span className="text-sm font-bold text-blue-700 w-12 text-right">{waterStartTemp}°C</span>
+                    <span className="text-sm font-bold text-blue-700 w-14 text-right">{formatTemp(waterStartTemp)}</span>
                   </div>
                   <div className="flex justify-between text-xs text-blue-500 mt-1">
-                    <span>{t('waterTempCold')} 2°C</span>
-                    <span>{t('waterTempWarm')} 40°C</span>
+                    <span>{t('waterTempCold')} {formatTemp(2)}</span>
+                    <span>{t('waterTempWarm')} {formatTemp(40)}</span>
                   </div>
                 </div>
 
@@ -543,11 +633,11 @@ const EggCalculator = () => {
                       onChange={(e) => setAmbientTemp(Number(e.target.value))}
                       className="flex-1 h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
                     />
-                    <span className="text-sm font-bold text-orange-700 w-12 text-right">{ambientTemp}°C</span>
+                    <span className="text-sm font-bold text-orange-700 w-14 text-right">{formatTemp(ambientTemp)}</span>
                   </div>
                   <div className="flex justify-between text-xs text-orange-500 mt-1">
-                    <span>{t('ambientWinter')} -10°C</span>
-                    <span>{t('ambientSummer')} 35°C</span>
+                    <span>{t('ambientWinter')} {formatTemp(-10)}</span>
+                    <span>{t('ambientSummer')} {formatTemp(35)}</span>
                   </div>
                 </div>
               </div>
@@ -585,10 +675,10 @@ const EggCalculator = () => {
             {tempDrop !== null && tempDrop > 2 && (
               <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-center">
                 <div className="text-blue-800">
-                  ⚠️ {t('tempDropWarning')} <span className="font-bold">{tempDrop}°C</span> {t('tempDropUnit')}
+                  ⚠️ {t('tempDropWarning')} <span className="font-bold">{tempUnit === 'F' ? Math.round(tempDrop * 9 / 5) : tempDrop}°{tempUnit}</span> {t('tempDropUnit')}
                 </div>
                 <div className="text-blue-600 text-xs mt-1">
-                  {t('effectiveTemp')}: ~{effectiveTemp}°C
+                  {t('effectiveTemp')}: ~{formatTemp(effectiveTemp)}
                 </div>
               </div>
             )}
@@ -629,7 +719,7 @@ const EggCalculator = () => {
               <div>
                 <div className="text-xs text-sky-700 mb-1">{t('boilingPoint')}</div>
                 <div className="flex items-center justify-center h-8 bg-white rounded-lg border border-sky-200">
-                  <span className="text-lg font-bold text-sky-700">{boilingPoint}°C</span>
+                  <span className="text-lg font-bold text-sky-700">{formatTemp(boilingPoint)}</span>
                 </div>
               </div>
               <div>
@@ -667,7 +757,7 @@ const EggCalculator = () => {
                 >
                   <div className="w-3 h-3 rounded-full mx-auto mb-1" style={{ backgroundColor: option.color }}></div>
                   <div className="font-medium text-gray-900 text-xs">{t(option.nameKey)}</div>
-                  <div className="text-xs text-gray-500">{option.temp}°C</div>
+                  <div className="text-xs text-gray-500">{formatTemp(option.temp)}</div>
                 </button>
               ))}
             </div>
@@ -698,7 +788,7 @@ const EggCalculator = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                {t('waterVolume')}: <span className="font-bold text-amber-600">{waterVolume}L</span>
+                {t('waterVolume')}: <span className="font-bold text-amber-600">{formatVolume(waterVolume)}</span>
               </label>
               <input
                 type="range"
@@ -746,7 +836,7 @@ const EggCalculator = () => {
           {/* Start Temperature */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('startTemp')}: <span className="font-bold text-amber-600">{startTemp}°C</span>
+              {t('startTemp')}: <span className="font-bold text-amber-600">{formatTemp(startTemp)}</span>
             </label>
             <div className="grid grid-cols-3 gap-2">
               {startTempOptions.map((option) => (
@@ -761,7 +851,7 @@ const EggCalculator = () => {
                 >
                   <div className="text-xl mb-1">{option.icon}</div>
                   <div className="text-xs font-medium">{t(option.nameKey)}</div>
-                  <div className="text-xs text-gray-500">{option.temp}°C</div>
+                  <div className="text-xs text-gray-500">{formatTemp(option.temp)}</div>
                 </button>
               ))}
             </div>
@@ -801,7 +891,7 @@ const EggCalculator = () => {
 
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="bg-white p-3 rounded-lg">
-                  <div className="text-emerald-600 text-xs">{t('heatingPhase')} ({waterStartTemp}°C → {boilingPoint}°C)</div>
+                  <div className="text-emerald-600 text-xs">{t('heatingPhase')} ({formatTemp(waterStartTemp)} → {formatTemp(boilingPoint)})</div>
                   <div className="text-xl font-bold text-emerald-800">~{heatingTime} min</div>
                   <div className="text-xs text-gray-500">
                     {t('atPower')} {stovePower}W ({t(stoveTypes.find(s => s.id === stoveType)?.nameKey)})
@@ -816,7 +906,7 @@ const EggCalculator = () => {
 
               {ambientTemp < 15 && (
                 <div className="mt-2 text-xs text-emerald-700">
-                  {t('includesHeatLoss')} {ambientTemp}°C {t('ambient')}
+                  {t('includesHeatLoss')} {formatTemp(ambientTemp)} {t('ambient')}
                 </div>
               )}
             </div>
