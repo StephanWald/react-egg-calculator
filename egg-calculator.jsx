@@ -466,6 +466,33 @@ const EggCalculator = () => {
     setTimerRemaining(null);
   };
 
+  // Core timer control functions
+  const startTimer = (durationSeconds) => {
+    setTimerRemaining(durationSeconds);
+    setTimerPaused(false);
+    setTimerComplete(false);
+    setTimerActive(true);
+  };
+
+  const stopTimer = () => {
+    setTimerActive(false);
+    setTimerPaused(false);
+    setTimerRemaining(null);
+    setTimerComplete(false);
+  };
+
+  const pauseTimer = () => {
+    if (timerActive && !timerPaused) {
+      setTimerPaused(true);
+    }
+  };
+
+  const resumeTimer = () => {
+    if (timerActive && timerPaused) {
+      setTimerPaused(false);
+    }
+  };
+
   // ============ AUDIO HELPERS ============
 
   const playTimerSound = () => {
