@@ -455,6 +455,42 @@ const EggCalculator = () => {
     setTimerRemaining(null);
   };
 
+  // ============ AUDIO HELPERS ============
+
+  const playTimerSound = () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+      // Play a sequence of beeps for emphasis
+      const playBeep = (startTime, frequency) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = frequency;
+        oscillator.type = 'sine';
+
+        // Fade in and out for a pleasant sound
+        gainNode.gain.setValueAtTime(0, startTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, startTime + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+
+        oscillator.start(startTime);
+        oscillator.stop(startTime + 0.4);
+      };
+
+      // Play 3 beeps with increasing frequency
+      const now = audioContext.currentTime;
+      playBeep(now, 800);
+      playBeep(now + 0.5, 900);
+      playBeep(now + 1.0, 1000);
+    } catch (e) {
+      // Web Audio API not supported or failed - silent fallback
+    }
+  };
+
   // ============ HELPERS ============
 
   const handleConsistencyChange = (option) => {
