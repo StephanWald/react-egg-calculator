@@ -44,6 +44,11 @@ const EggCalculator = () => {
   const [showEnergy, setShowEnergy] = useState(false);
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
+  // ============ TIMER STATE ============
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerRemaining, setTimerRemaining] = useState(null);
+  const [notificationPermission, setNotificationPermission] = useState('default');
+
   // ============ UNIT PREFERENCES ============
   const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
   const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
