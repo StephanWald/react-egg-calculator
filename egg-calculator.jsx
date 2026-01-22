@@ -729,6 +729,14 @@ const EggCalculator = () => {
                 </div>
               </div>
             )}
+
+            {/* Start Timer Button */}
+            <button
+              disabled={!cookingTime}
+              className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              ⏱️ Start Timer
+            </button>
           </div>
 
           {/* Location & Pressure Section */}
