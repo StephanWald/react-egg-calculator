@@ -160,6 +160,40 @@ const EggCalculator = () => {
     return () => clearInterval(interval);
   }, [timerRunning]);
 
+  // ============ TIMER COMPLETION NOTIFICATION ============
+  useEffect(() => {
+    if (timerRemaining === 0 && !timerRunning) {
+      // Send browser notification
+      if ('Notification' in window && notificationPermission === 'granted') {
+        const notification = new Notification('🥚 Eggs are ready!', {
+          body: 'Your perfectly cooked eggs are done. Remove them from the water now!',
+          icon: '/favicon.ico',
+          badge: '/favicon.ico',
+          tag: 'egg-timer',
+          requireInteraction: true,
+        });
+
+        // Close notification after 10 seconds
+        setTimeout(() => notification.close(), 10000);
+      }
+
+      // Vibrate if supported (mobile devices)
+      if ('vibrate' in navigator) {
+        navigator.vibrate([200, 100, 200, 100, 200]);
+      }
+
+      // Try to play audio notification
+      try {
+        const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApJn+HyvmwhBSuBzvLZiTYIG2m98OScTgwOUKfk8LVkHQc5k9jyzHksBSR3yPDckUALFF+18OqnVRMKSZ/h8r9sIQYsh9Dy2Yk1CBtpvfDknE4MDlCn5PC1ZB0HOpPY8sx5LAUkd8jw3ZFACxRetfDqp1UTCkme4PK/bCEGK4fQ8tmJNQgbab3w5JxODA5Qp+TwtWQdBzqT2PLMeSwFJHfI8N2RQAsUXrXw6qdVEwpJn+Hyv2whBiuH0PLZiTUIG2m98OScTgwOUKfk8LVkHQc6k9jyzHksBSR3yPDdkUALFF618OqnVRMKSZ/h8r9sIQYrh9Dy2Yk1CBtpvfDknE4MDlCn5PC1ZB0HOpPY8sx5LAUkd8jw3ZFACxRet');
+        audio.play().catch(() => {
+          // Audio play failed - browser might block it
+        });
+      } catch (e) {
+        // Audio not supported or failed
+      }
+    }
+  }, [timerRemaining, timerRunning, notificationPermission]);
+
   // ============ CONSTANTS & PRESETS ============
 
   const stoveTypes = [
