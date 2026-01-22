@@ -55,6 +55,7 @@ const EggCalculator = () => {
   const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
   const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
   const [weightUnit, setWeightUnit] = useState('g'); // 'g' or 'oz'
+  const [pressureUnit, setPressureUnit] = useState('hPa'); // 'hPa' or 'inHg'
 
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
@@ -90,6 +91,7 @@ const EggCalculator = () => {
         if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
         if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
         if (settings.weightUnit !== undefined) setWeightUnit(settings.weightUnit);
+        if (settings.pressureUnit !== undefined) setPressureUnit(settings.pressureUnit);
         // Notification permission
         if (settings.notificationPermission !== undefined) setNotificationPermission(settings.notificationPermission);
       }
@@ -109,7 +111,7 @@ const EggCalculator = () => {
         // Location & pressure
         altitude, pressure, boilingPoint, locationName, pressureSource,
         // Unit preferences
-        tempUnit, volumeUnit, weightUnit,
+        tempUnit, volumeUnit, weightUnit, pressureUnit,
         // Notification permission
         notificationPermission,
       };
@@ -121,7 +123,7 @@ const EggCalculator = () => {
     weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
-    tempUnit, volumeUnit, weightUnit,
+    tempUnit, volumeUnit, weightUnit, pressureUnit,
     notificationPermission,
   ]);
 
@@ -633,6 +635,14 @@ const EggCalculator = () => {
     return `${weightG}g`;
   };
 
+  const formatPressure = (pressureHPa) => {
+    if (pressureUnit === 'inHg') {
+      const pressureInHg = Math.round(pressureHPa * 0.02953 * 100) / 100;
+      return `${pressureInHg} inHg`;
+    }
+    return `${pressureHPa} hPa`;
+  };
+
   const getEggVisualization = () => {
     const yolkSize = consistency === 'soft' ? 45 : consistency === 'medium' ? 40 : consistency === 'hard-medium' ? 35 : 30;
     const yolkColor = consistencyOptions.find(c => c.id === consistency)?.color || '#FFD700';
@@ -728,6 +738,19 @@ const EggCalculator = () => {
                   <span className={weightUnit === 'g' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>g</span>
                   <span className="text-gray-300 mx-2">|</span>
                   <span className={weightUnit === 'oz' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>oz</span>
+                </button>
+              </div>
+
+              {/* Pressure Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configPressureUnit')}</label>
+                <button
+                  onClick={() => setPressureUnit(pressureUnit === 'hPa' ? 'inHg' : 'hPa')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={pressureUnit === 'hPa' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>hPa</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={pressureUnit === 'inHg' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>inHg</span>
                 </button>
               </div>
 
@@ -1072,14 +1095,14 @@ const EggCalculator = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <div className="text-xs text-sky-700 mb-1">{t('airPressure')}</div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   <input
                     type="number"
                     value={pressure}
                     onChange={(e) => handleManualPressure(Number(e.target.value))}
                     className="w-full px-2 py-1.5 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                   />
-                  <span className="text-xs text-sky-700">hPa</span>
+                  <span className="text-xs text-sky-700 font-medium whitespace-nowrap">{formatPressure(pressure)}</span>
                 </div>
               </div>
               <div>
