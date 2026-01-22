@@ -118,6 +118,7 @@ export const translations = {
     configTempUnit: 'Temperature Unit',
     configVolumeUnit: 'Volume Unit',
     configWeightUnit: 'Weight Unit',
+    configPressureUnit: 'Pressure Unit',
     configLanguage: 'Language',
 
     // Timer
@@ -246,6 +247,7 @@ export const translations = {
     configTempUnit: 'Temperatureinheit',
     configVolumeUnit: 'Volumeneinheit',
     configWeightUnit: 'Gewichtseinheit',
+    configPressureUnit: 'Druckeinheit',
     configLanguage: 'Sprache',
 
     // Timer
@@ -374,6 +376,7 @@ export const translations = {
     configTempUnit: 'Unité de température',
     configVolumeUnit: 'Unité de volume',
     configWeightUnit: 'Unité de poids',
+    configPressureUnit: 'Unité de pression',
     configLanguage: 'Langue',
 
     // Timer
@@ -502,6 +505,7 @@ export const translations = {
     configTempUnit: 'Unidad de temperatura',
     configVolumeUnit: 'Unidad de volumen',
     configWeightUnit: 'Unidad de peso',
+    configPressureUnit: 'Unidad de presión',
     configLanguage: 'Idioma',
 
     // Timer
@@ -630,6 +634,7 @@ export const translations = {
     configTempUnit: 'Unità di temperatura',
     configVolumeUnit: 'Unità di volume',
     configWeightUnit: 'Unità di peso',
+    configPressureUnit: 'Unità di pressione',
     configLanguage: 'Lingua',
 
     // Timer
@@ -758,6 +763,7 @@ export const translations = {
     configTempUnit: 'Unidade de temperatura',
     configVolumeUnit: 'Unidade de volume',
     configWeightUnit: 'Unidade de peso',
+    configPressureUnit: 'Unidade de pressão',
     configLanguage: 'Idioma',
 
     // Timer

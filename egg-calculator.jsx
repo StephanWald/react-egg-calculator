@@ -607,6 +607,19 @@ const EggCalculator = () => {
                 </button>
               </div>
 
+              {/* Pressure Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configPressureUnit')}</label>
+                <button
+                  onClick={() => setPressureUnit(pressureUnit === 'hPa' ? 'inHg' : 'hPa')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={pressureUnit === 'hPa' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>hPa</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={pressureUnit === 'inHg' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>inHg</span>
+                </button>
+              </div>
+
               {/* Language */}
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">{t('configLanguage')}</label>
