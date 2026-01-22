@@ -47,6 +47,7 @@ const EggCalculator = () => {
   // ============ UNIT PREFERENCES ============
   const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
   const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
+  const [weightUnit, setWeightUnit] = useState('g'); // 'g' or 'oz'
 
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
@@ -81,6 +82,7 @@ const EggCalculator = () => {
         // Unit preferences
         if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
         if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
+        if (settings.weightUnit !== undefined) setWeightUnit(settings.weightUnit);
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -98,7 +100,7 @@ const EggCalculator = () => {
         // Location & pressure
         altitude, pressure, boilingPoint, locationName, pressureSource,
         // Unit preferences
-        tempUnit, volumeUnit,
+        tempUnit, volumeUnit, weightUnit,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -108,7 +110,7 @@ const EggCalculator = () => {
     weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
-    tempUnit, volumeUnit,
+    tempUnit, volumeUnit, weightUnit,
   ]);
 
   // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
@@ -384,6 +386,14 @@ const EggCalculator = () => {
     return `${volumeL}L`;
   };
 
+  const formatWeight = (weightG) => {
+    if (weightUnit === 'oz') {
+      const weightOz = Math.round(weightG / 28.35 * 10) / 10;
+      return `${weightOz}oz`;
+    }
+    return `${weightG}g`;
+  };
+
   const getEggVisualization = () => {
     const yolkSize = consistency === 'soft' ? 45 : consistency === 'medium' ? 40 : consistency === 'hard-medium' ? 35 : 30;
     const yolkColor = consistencyOptions.find(c => c.id === consistency)?.color || '#FFD700';
@@ -466,6 +476,19 @@ const EggCalculator = () => {
                   <span className={volumeUnit === 'L' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>L</span>
                   <span className="text-gray-300 mx-2">|</span>
                   <span className={volumeUnit === 'oz' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>oz</span>
+                </button>
+              </div>
+
+              {/* Weight Unit */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('configWeightUnit')}</label>
+                <button
+                  onClick={() => setWeightUnit(weightUnit === 'g' ? 'oz' : 'g')}
+                  className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  <span className={weightUnit === 'g' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>g</span>
+                  <span className="text-gray-300 mx-2">|</span>
+                  <span className={weightUnit === 'oz' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>oz</span>
                 </button>
               </div>
 
@@ -805,7 +828,7 @@ const EggCalculator = () => {
           {/* Egg Size */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('eggSize')}: <span className="font-bold text-amber-600">{weight}g</span>
+              {t('eggSize')}: <span className="font-bold text-amber-600">{formatWeight(weight)}</span>
             </label>
             <div className="grid grid-cols-4 gap-2 mb-2">
               {eggSizes.map((size) => (
@@ -819,7 +842,7 @@ const EggCalculator = () => {
                   }`}
                 >
                   <div className="font-bold">{size.name}</div>
-                  <div className="text-xs text-gray-500">{size.weight}g</div>
+                  <div className="text-xs text-gray-500">{formatWeight(size.weight)}</div>
                 </button>
               ))}
             </div>

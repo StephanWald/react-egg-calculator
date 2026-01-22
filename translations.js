@@ -117,6 +117,7 @@ export const translations = {
     configDialogTitle: 'Settings',
     configTempUnit: 'Temperature Unit',
     configVolumeUnit: 'Volume Unit',
+    configWeightUnit: 'Weight Unit',
     configLanguage: 'Language',
   },
 
@@ -235,6 +236,7 @@ export const translations = {
     configDialogTitle: 'Einstellungen',
     configTempUnit: 'Temperatureinheit',
     configVolumeUnit: 'Volumeneinheit',
+    configWeightUnit: 'Gewichtseinheit',
     configLanguage: 'Sprache',
   },
 
@@ -353,6 +355,7 @@ export const translations = {
     configDialogTitle: 'Paramètres',
     configTempUnit: 'Unité de température',
     configVolumeUnit: 'Unité de volume',
+    configWeightUnit: 'Unité de poids',
     configLanguage: 'Langue',
   },
 
@@ -471,6 +474,7 @@ export const translations = {
     configDialogTitle: 'Configuración',
     configTempUnit: 'Unidad de temperatura',
     configVolumeUnit: 'Unidad de volumen',
+    configWeightUnit: 'Unidad de peso',
     configLanguage: 'Idioma',
   },
 
@@ -589,6 +593,7 @@ export const translations = {
     configDialogTitle: 'Impostazioni',
     configTempUnit: 'Unità di temperatura',
     configVolumeUnit: 'Unità di volume',
+    configWeightUnit: 'Unità di peso',
     configLanguage: 'Lingua',
   },
 
@@ -707,6 +712,7 @@ export const translations = {
     configDialogTitle: 'Configurações',
     configTempUnit: 'Unidade de temperatura',
     configVolumeUnit: 'Unidade de volume',
+    configWeightUnit: 'Unidade de peso',
     configLanguage: 'Idioma',
   },
 };
