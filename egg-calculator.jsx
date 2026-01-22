@@ -136,9 +136,17 @@ const EggCalculator = () => {
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
-        // Timer takes priority - stop it if active
+        // Timer takes priority - stop it if active or complete
         if (timerActive) {
           setTimerActive(false);
+          setTimerPaused(false);
+          setTimerRemaining(null);
+          setTimerComplete(false);
+          return;
+        }
+        // Dismiss timer complete overlay
+        if (timerComplete) {
+          setTimerComplete(false);
           setTimerRemaining(null);
           return;
         }
@@ -150,7 +158,7 @@ const EggCalculator = () => {
     };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [showConfigDialog, timerActive]);
+  }, [showConfigDialog, timerActive, timerComplete]);
 
   // ============ TIMER COUNTDOWN LOGIC ============
   useEffect(() => {
@@ -699,6 +707,74 @@ const EggCalculator = () => {
                     </button>
                   ))}
                 </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ============ TIMER OVERLAY ============ */}
+        {(timerActive || timerComplete) && (
+          <>
+            {/* Backdrop - does NOT close on click (unlike config dialog) */}
+            <div className="fixed inset-0 bg-black bg-opacity-70 z-50" />
+            {/* Timer Overlay */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm text-center">
+                {timerComplete ? (
+                  <>
+                    {/* Timer Complete State */}
+                    <div className="text-6xl mb-4">🥚</div>
+                    <h2 className="text-2xl font-bold text-amber-900 mb-2">{t('timerComplete')}</h2>
+                    <p className="text-gray-600 mb-6">{t('notificationBody')}</p>
+                    <button
+                      onClick={() => {
+                        setTimerComplete(false);
+                        setTimerRemaining(null);
+                      }}
+                      className="w-full py-4 px-6 bg-amber-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-amber-600 transition-colors"
+                    >
+                      ✓ {t('timerDismiss')}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {/* Timer Running State */}
+                    <div className="text-white text-sm font-medium mb-2 text-amber-600">⏱️ {t('timerRemaining')}</div>
+                    <div className="text-7xl font-bold text-amber-900 tabular-nums tracking-wider mb-8">
+                      {formatCountdown(timerRemaining)}
+                    </div>
+
+                    {/* Timer Controls */}
+                    <div className="flex gap-3">
+                      {/* Pause/Resume Button */}
+                      <button
+                        onClick={timerPaused ? resumeTimer : pauseTimer}
+                        className={`flex-1 py-4 px-6 text-lg font-bold rounded-xl shadow-lg transition-colors ${
+                          timerPaused
+                            ? 'bg-green-500 text-white hover:bg-green-600'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {timerPaused ? `▶ ${t('timerResume')}` : `⏸ ${t('timerPause')}`}
+                      </button>
+
+                      {/* Stop Button */}
+                      <button
+                        onClick={stopTimer}
+                        className="flex-1 py-4 px-6 bg-red-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-red-600 transition-colors"
+                      >
+                        ⏹ {t('timerStop')}
+                      </button>
+                    </div>
+
+                    {/* Paused indicator */}
+                    {timerPaused && (
+                      <div className="mt-4 text-amber-600 font-medium animate-pulse">
+                        ⏸ {t('timerPause')}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </>
