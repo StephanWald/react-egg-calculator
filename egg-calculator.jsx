@@ -165,8 +165,8 @@ const EggCalculator = () => {
     if (timerRemaining === 0 && !timerRunning) {
       // Send browser notification
       if ('Notification' in window && notificationPermission === 'granted') {
-        const notification = new Notification('🥚 Eggs are ready!', {
-          body: 'Your perfectly cooked eggs are done. Remove them from the water now!',
+        const notification = new Notification(`🥚 ${t('notificationTitle')}`, {
+          body: t('notificationBody'),
           icon: '/favicon.ico',
           badge: '/favicon.ico',
           tag: 'egg-timer',
@@ -446,6 +446,11 @@ const EggCalculator = () => {
     const timeInSeconds = Math.round(cookingTime * 60);
     setTimerRemaining(timeInSeconds);
     setTimerRunning(true);
+  };
+
+  const handleStopTimer = () => {
+    setTimerRunning(false);
+    setTimerRemaining(null);
   };
 
   // ============ HELPERS ============
@@ -820,11 +825,11 @@ const EggCalculator = () => {
 
             {/* Start Timer Button */}
             <button
-              onClick={handleStartTimer}
-              disabled={!cookingTime || timerRunning}
+              onClick={timerRunning ? handleStopTimer : handleStartTimer}
+              disabled={!cookingTime && !timerRunning}
               className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              ⏱️ {timerRunning ? t('timerRunning') : t('timerStart')}
+              ⏱️ {timerRunning ? t('timerStop') : t('timerStart')}
             </button>
           </div>
 
