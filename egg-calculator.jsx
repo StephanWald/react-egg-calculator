@@ -129,6 +129,25 @@ const EggCalculator = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showConfigDialog]);
 
+  // ============ TIMER COUNTDOWN LOGIC ============
+  useEffect(() => {
+    if (!timerRunning || timerRemaining === null || timerRemaining <= 0) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setTimerRemaining((prev) => {
+        if (prev === null || prev <= 1) {
+          setTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timerRunning]);
+
   // ============ CONSTANTS & PRESETS ============
 
   const stoveTypes = [
