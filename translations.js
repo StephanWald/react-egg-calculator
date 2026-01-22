@@ -119,6 +119,9 @@ export const translations = {
     configVolumeUnit: 'Volume Unit',
     configWeightUnit: 'Weight Unit',
     configLanguage: 'Language',
+    resetToDefaults: 'Reset to Defaults',
+    resetConfirm: 'Are you sure you want to reset all settings to their default values?',
+    resetWarning: 'This action cannot be undone.',
 
     // Timer
     timerStart: 'Start Timer',
@@ -247,6 +250,9 @@ export const translations = {
     configVolumeUnit: 'Volumeneinheit',
     configWeightUnit: 'Gewichtseinheit',
     configLanguage: 'Sprache',
+    resetToDefaults: 'Zurücksetzen',
+    resetConfirm: 'Sind Sie sicher, dass Sie alle Einstellungen auf die Standardwerte zurücksetzen möchten?',
+    resetWarning: 'Diese Aktion kann nicht rückgängig gemacht werden.',
 
     // Timer
     timerStart: 'Timer starten',
@@ -375,6 +381,9 @@ export const translations = {
     configVolumeUnit: 'Unité de volume',
     configWeightUnit: 'Unité de poids',
     configLanguage: 'Langue',
+    resetToDefaults: 'Réinitialiser',
+    resetConfirm: 'Êtes-vous sûr de vouloir réinitialiser tous les paramètres aux valeurs par défaut ?',
+    resetWarning: 'Cette action ne peut pas être annulée.',
 
     // Timer
     timerStart: 'Démarrer le minuteur',
@@ -503,6 +512,9 @@ export const translations = {
     configVolumeUnit: 'Unidad de volumen',
     configWeightUnit: 'Unidad de peso',
     configLanguage: 'Idioma',
+    resetToDefaults: 'Restablecer',
+    resetConfirm: '¿Está seguro de que desea restablecer todas las configuraciones a sus valores predeterminados?',
+    resetWarning: 'Esta acción no se puede deshacer.',
 
     // Timer
     timerStart: 'Iniciar temporizador',
@@ -631,6 +643,9 @@ export const translations = {
     configVolumeUnit: 'Unità di volume',
     configWeightUnit: 'Unità di peso',
     configLanguage: 'Lingua',
+    resetToDefaults: 'Ripristina',
+    resetConfirm: 'Sei sicuro di voler ripristinare tutte le impostazioni ai valori predefiniti?',
+    resetWarning: 'Questa azione non può essere annullata.',
 
     // Timer
     timerStart: 'Avvia timer',
@@ -759,6 +774,9 @@ export const translations = {
     configVolumeUnit: 'Unidade de volume',
     configWeightUnit: 'Unidade de peso',
     configLanguage: 'Idioma',
+    resetToDefaults: 'Repor predefinições',
+    resetConfirm: 'Tem certeza de que deseja repor todas as configurações para os valores predefinidos?',
+    resetWarning: 'Esta ação não pode ser desfeita.',
 
     // Timer
     timerStart: 'Iniciar temporizador',
