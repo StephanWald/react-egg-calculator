@@ -433,9 +433,9 @@ const EggCalculator = () => {
                   onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
                   className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
                 >
-                  <span className={tempUnit === 'C' ? 'text-amber-600' : 'text-gray-400'}>°C</span>
+                  <span className={tempUnit === 'C' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>°C</span>
                   <span className="text-gray-300 mx-2">|</span>
-                  <span className={tempUnit === 'F' ? 'text-amber-600' : 'text-gray-400'}>°F</span>
+                  <span className={tempUnit === 'F' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>°F</span>
                 </button>
               </div>
 
@@ -446,9 +446,9 @@ const EggCalculator = () => {
                   onClick={() => setVolumeUnit(volumeUnit === 'L' ? 'oz' : 'L')}
                   className="w-full px-3 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
                 >
-                  <span className={volumeUnit === 'L' ? 'text-amber-600' : 'text-gray-400'}>L</span>
+                  <span className={volumeUnit === 'L' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>L</span>
                   <span className="text-gray-300 mx-2">|</span>
-                  <span className={volumeUnit === 'oz' ? 'text-amber-600' : 'text-gray-400'}>oz</span>
+                  <span className={volumeUnit === 'oz' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>oz</span>
                 </button>
               </div>
 
