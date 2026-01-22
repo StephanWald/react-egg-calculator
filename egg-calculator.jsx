@@ -53,6 +53,7 @@ const EggCalculator = () => {
   const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
   const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
   const [weightUnit, setWeightUnit] = useState('g'); // 'g' or 'oz'
+  const [pressureUnit, setPressureUnit] = useState('hPa'); // 'hPa' or 'inHg'
 
   // ============ SETTINGS PERSISTENCE ============
   const STORAGE_KEY = 'egg-calculator-settings';
@@ -88,6 +89,7 @@ const EggCalculator = () => {
         if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
         if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
         if (settings.weightUnit !== undefined) setWeightUnit(settings.weightUnit);
+        if (settings.pressureUnit !== undefined) setPressureUnit(settings.pressureUnit);
         // Notification permission
         if (settings.notificationPermission !== undefined) setNotificationPermission(settings.notificationPermission);
       }
@@ -107,7 +109,7 @@ const EggCalculator = () => {
         // Location & pressure
         altitude, pressure, boilingPoint, locationName, pressureSource,
         // Unit preferences
-        tempUnit, volumeUnit, weightUnit,
+        tempUnit, volumeUnit, weightUnit, pressureUnit,
         // Notification permission
         notificationPermission,
       };
@@ -119,7 +121,7 @@ const EggCalculator = () => {
     weight, startTemp, targetTemp, consistency, eggCount, waterVolume,
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
-    tempUnit, volumeUnit, weightUnit,
+    tempUnit, volumeUnit, weightUnit, pressureUnit,
     notificationPermission,
   ]);
 
