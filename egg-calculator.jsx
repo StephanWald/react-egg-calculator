@@ -145,14 +145,16 @@ const EggCalculator = () => {
 
   // ============ TIMER COUNTDOWN LOGIC ============
   useEffect(() => {
-    if (!timerActive || timerRemaining === null || timerRemaining <= 0) {
+    if (!timerActive || timerPaused || timerRemaining === null || timerRemaining <= 0) {
       return;
     }
 
     const interval = setInterval(() => {
       setTimerRemaining((prev) => {
         if (prev === null || prev <= 1) {
+          setTimerComplete(true);
           setTimerActive(false);
+          playTimerSound();
           return 0;
         }
         return prev - 1;
@@ -160,7 +162,7 @@ const EggCalculator = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerActive]);
+  }, [timerActive, timerPaused]);
 
   // ============ TIMER COMPLETION NOTIFICATION ============
   useEffect(() => {
