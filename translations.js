@@ -119,6 +119,15 @@ export const translations = {
     configVolumeUnit: 'Volume Unit',
     configWeightUnit: 'Weight Unit',
     configLanguage: 'Language',
+
+    // Timer
+    timerStart: 'Start Timer',
+    timerStop: 'Stop Timer',
+    timerRunning: 'Timer Running',
+    timerRemaining: 'Time Remaining',
+    notificationTitle: 'Eggs are ready!',
+    notificationBody: 'Your perfectly cooked eggs are done. Remove them from the water now!',
+    notificationPermissionDenied: 'Notification permission denied. Please enable notifications in your browser settings.',
   },
 
   de: {
@@ -238,6 +247,15 @@ export const translations = {
     configVolumeUnit: 'Volumeneinheit',
     configWeightUnit: 'Gewichtseinheit',
     configLanguage: 'Sprache',
+
+    // Timer
+    timerStart: 'Timer starten',
+    timerStop: 'Timer stoppen',
+    timerRunning: 'Timer läuft',
+    timerRemaining: 'Verbleibende Zeit',
+    notificationTitle: 'Eier sind fertig!',
+    notificationBody: 'Ihre perfekt gekochten Eier sind fertig. Nehmen Sie sie jetzt aus dem Wasser!',
+    notificationPermissionDenied: 'Benachrichtigungsberechtigung verweigert. Bitte aktivieren Sie Benachrichtigungen in Ihren Browser-Einstellungen.',
   },
 
   fr: {
@@ -357,6 +375,15 @@ export const translations = {
     configVolumeUnit: 'Unité de volume',
     configWeightUnit: 'Unité de poids',
     configLanguage: 'Langue',
+
+    // Timer
+    timerStart: 'Démarrer le minuteur',
+    timerStop: 'Arrêter le minuteur',
+    timerRunning: 'Minuteur en cours',
+    timerRemaining: 'Temps restant',
+    notificationTitle: 'Les œufs sont prêts !',
+    notificationBody: 'Vos œufs parfaitement cuits sont prêts. Retirez-les de l\'eau maintenant !',
+    notificationPermissionDenied: 'Permission de notification refusée. Veuillez activer les notifications dans les paramètres de votre navigateur.',
   },
 
   es: {
@@ -476,6 +503,15 @@ export const translations = {
     configVolumeUnit: 'Unidad de volumen',
     configWeightUnit: 'Unidad de peso',
     configLanguage: 'Idioma',
+
+    // Timer
+    timerStart: 'Iniciar temporizador',
+    timerStop: 'Detener temporizador',
+    timerRunning: 'Temporizador en marcha',
+    timerRemaining: 'Tiempo restante',
+    notificationTitle: '¡Los huevos están listos!',
+    notificationBody: 'Sus huevos perfectamente cocidos están listos. ¡Retírelos del agua ahora!',
+    notificationPermissionDenied: 'Permiso de notificación denegado. Por favor, active las notificaciones en la configuración de su navegador.',
   },
 
   it: {
@@ -595,6 +631,15 @@ export const translations = {
     configVolumeUnit: 'Unità di volume',
     configWeightUnit: 'Unità di peso',
     configLanguage: 'Lingua',
+
+    // Timer
+    timerStart: 'Avvia timer',
+    timerStop: 'Ferma timer',
+    timerRunning: 'Timer in corso',
+    timerRemaining: 'Tempo rimanente',
+    notificationTitle: 'Le uova sono pronte!',
+    notificationBody: 'Le tue uova perfettamente cotte sono pronte. Toglile dall\'acqua ora!',
+    notificationPermissionDenied: 'Autorizzazione notifica negata. Si prega di abilitare le notifiche nelle impostazioni del browser.',
   },
 
   pt: {
@@ -714,6 +759,15 @@ export const translations = {
     configVolumeUnit: 'Unidade de volume',
     configWeightUnit: 'Unidade de peso',
     configLanguage: 'Idioma',
+
+    // Timer
+    timerStart: 'Iniciar temporizador',
+    timerStop: 'Parar temporizador',
+    timerRunning: 'Temporizador em execução',
+    timerRemaining: 'Tempo restante',
+    notificationTitle: 'Os ovos estão prontos!',
+    notificationBody: 'Os seus ovos perfeitamente cozidos estão prontos. Retire-os da água agora!',
+    notificationPermissionDenied: 'Permissão de notificação negada. Por favor, ative as notificações nas configurações do seu navegador.',
   },
 };
 

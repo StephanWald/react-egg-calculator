@@ -44,6 +44,11 @@ const EggCalculator = () => {
   const [showEnergy, setShowEnergy] = useState(false);
   const [showConfigDialog, setShowConfigDialog] = useState(false);
 
+  // ============ TIMER STATE ============
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerRemaining, setTimerRemaining] = useState(null);
+  const [notificationPermission, setNotificationPermission] = useState('default');
+
   // ============ UNIT PREFERENCES ============
   const [tempUnit, setTempUnit] = useState('C'); // 'C' or 'F'
   const [volumeUnit, setVolumeUnit] = useState('L'); // 'L' or 'oz'
@@ -83,6 +88,8 @@ const EggCalculator = () => {
         if (settings.tempUnit !== undefined) setTempUnit(settings.tempUnit);
         if (settings.volumeUnit !== undefined) setVolumeUnit(settings.volumeUnit);
         if (settings.weightUnit !== undefined) setWeightUnit(settings.weightUnit);
+        // Notification permission
+        if (settings.notificationPermission !== undefined) setNotificationPermission(settings.notificationPermission);
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -101,6 +108,8 @@ const EggCalculator = () => {
         altitude, pressure, boilingPoint, locationName, pressureSource,
         // Unit preferences
         tempUnit, volumeUnit, weightUnit,
+        // Notification permission
+        notificationPermission,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch (e) {
@@ -111,7 +120,15 @@ const EggCalculator = () => {
     stoveType, stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp,
     altitude, pressure, boilingPoint, locationName, pressureSource,
     tempUnit, volumeUnit, weightUnit,
+    notificationPermission,
   ]);
+
+  // ============ NOTIFICATION PERMISSION CHECK ============
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission !== 'default') {
+      setNotificationPermission(Notification.permission);
+    }
+  }, []);
 
   // ============ CONFIG DIALOG ESCAPE KEY HANDLER ============
   useEffect(() => {
@@ -123,6 +140,60 @@ const EggCalculator = () => {
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [showConfigDialog]);
+
+  // ============ TIMER COUNTDOWN LOGIC ============
+  useEffect(() => {
+    if (!timerRunning || timerRemaining === null || timerRemaining <= 0) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setTimerRemaining((prev) => {
+        if (prev === null || prev <= 1) {
+          setTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timerRunning]);
+
+  // ============ TIMER COMPLETION NOTIFICATION ============
+  useEffect(() => {
+    if (timerRemaining === 0 && !timerRunning) {
+      // Send browser notification
+      if ('Notification' in window && notificationPermission === 'granted') {
+        const notification = new Notification(`🥚 ${t('notificationTitle')}`, {
+          body: t('notificationBody'),
+          icon: '/favicon.ico',
+          badge: '/favicon.ico',
+          tag: 'egg-timer',
+          requireInteraction: true,
+        });
+
+        // Close notification after 10 seconds
+        setTimeout(() => notification.close(), 10000);
+      }
+
+      // Vibrate if supported (mobile devices)
+      if ('vibrate' in navigator) {
+        navigator.vibrate([200, 100, 200, 100, 200]);
+      }
+
+      // Play audio alert (always - serves as fallback when notifications are denied/unavailable)
+      try {
+        const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApJn+HyvmwhBSuBzvLZiTYIG2m98OScTgwOUKfk8LVkHQc5k9jyzHksBSR3yPDckUALFF+18OqnVRMKSZ/h8r9sIQYsh9Dy2Yk1CBtpvfDknE4MDlCn5PC1ZB0HOpPY8sx5LAUkd8jw3ZFACxRetfDqp1UTCkme4PK/bCEGK4fQ8tmJNQgbab3w5JxODA5Qp+TwtWQdBzqT2PLMeSwFJHfI8N2RQAsUXrXw6qdVEwpJn+Hyv2whBiuH0PLZiTUIG2m98OScTgwOUKfk8LVkHQc6k9jyzHksBSR3yPDdkUALFF618OqnVRMKSZ/h8r9sIQYrh9Dy2Yk1CBtpvfDknE4MDlCn5PC1ZB0HOpPY8sx5LAUkd8jw3ZFACxRet');
+        audio.volume = 1.0;
+        audio.play().catch(() => {
+          // Audio play blocked by browser - user interaction may be required
+        });
+      } catch (e) {
+        // Audio not supported or failed to load
+      }
+    }
+  }, [timerRemaining, timerRunning, notificationPermission]);
 
   // ============ CONSTANTS & PRESETS ============
 
@@ -355,6 +426,33 @@ const EggCalculator = () => {
     }
   };
 
+  // ============ TIMER HANDLERS ============
+
+  const handleStartTimer = async () => {
+    if (!cookingTime) return;
+
+    // Request notification permission if not yet determined
+    if ('Notification' in window && notificationPermission === 'default') {
+      try {
+        const permission = await Notification.requestPermission();
+        setNotificationPermission(permission);
+      } catch (error) {
+        // Handle browsers that don't support promise-based requestPermission
+        setNotificationPermission('denied');
+      }
+    }
+
+    // Start the timer
+    const timeInSeconds = Math.round(cookingTime * 60);
+    setTimerRemaining(timeInSeconds);
+    setTimerRunning(true);
+  };
+
+  const handleStopTimer = () => {
+    setTimerRunning(false);
+    setTimerRemaining(null);
+  };
+
   // ============ HELPERS ============
 
   const handleConsistencyChange = (option) => {
@@ -367,6 +465,13 @@ const EggCalculator = () => {
     const mins = Math.floor(minutes);
     const secs = Math.round((minutes - mins) * 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const formatCountdown = (seconds) => {
+    if (seconds === null || seconds < 0) return '00:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   // ============ UNIT CONVERSION HELPERS ============
@@ -705,6 +810,27 @@ const EggCalculator = () => {
                 </div>
               </div>
             )}
+
+            {/* Timer Countdown Display */}
+            {timerRunning && timerRemaining !== null && (
+              <div className="mt-4 p-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
+                <div className="text-center">
+                  <div className="text-white text-sm font-medium mb-2">⏱️ {t('timerRemaining')}</div>
+                  <div className="text-6xl font-bold text-white tabular-nums tracking-wider">
+                    {formatCountdown(timerRemaining)}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Start Timer Button */}
+            <button
+              onClick={timerRunning ? handleStopTimer : handleStartTimer}
+              disabled={!cookingTime && !timerRunning}
+              className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              ⏱️ {timerRunning ? t('timerStop') : t('timerStart')}
+            </button>
           </div>
 
           {/* Location & Pressure Section */}
