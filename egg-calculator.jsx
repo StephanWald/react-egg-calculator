@@ -809,7 +809,7 @@ const EggCalculator = () => {
             {timerRunning && timerRemaining !== null && (
               <div className="mt-4 p-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg">
                 <div className="text-center">
-                  <div className="text-white text-sm font-medium mb-2">⏱️ Time Remaining</div>
+                  <div className="text-white text-sm font-medium mb-2">⏱️ {t('timerRemaining')}</div>
                   <div className="text-6xl font-bold text-white tabular-nums tracking-wider">
                     {formatCountdown(timerRemaining)}
                   </div>
@@ -823,7 +823,7 @@ const EggCalculator = () => {
               disabled={!cookingTime || timerRunning}
               className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              ⏱️ {timerRunning ? 'Timer Running' : 'Start Timer'}
+              ⏱️ {timerRunning ? t('timerRunning') : t('timerStart')}
             </button>
           </div>
 
