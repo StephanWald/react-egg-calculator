@@ -216,6 +216,49 @@ const EggCalculator = () => {
     }
   }, [timerRemaining, timerActive, notificationPermission]);
 
+  // ============ RESET FUNCTION ============
+  const handleResetToDefaults = () => {
+    // Clear localStorage
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      // localStorage not available or error removing item
+    }
+
+    // Reset all state to defaults
+    // Working inputs
+    setWeight(60);
+    setStartTemp(4);
+    setTargetTemp(67);
+    setConsistency('medium');
+    setEggCount(1);
+    setWaterVolume(1.5);
+
+    // Household settings
+    setStoveType('induction');
+    setStovePower(2000);
+    setStoveEfficiency(0.87);
+    setPotWeight(0.8);
+    setPotMaterial('steel');
+    setWaterStartTemp(15);
+    setAmbientTemp(22);
+
+    // Location & pressure
+    setAltitude(0);
+    setPressure(1013.25);
+    setBoilingPoint(100);
+    setLocationName(null);
+    setPressureSource('default');
+
+    // Unit preferences
+    setTempUnit('C');
+    setVolumeUnit('L');
+    setWeightUnit('g');
+
+    // Notification permission (don't reset - it's determined by browser)
+    // notificationPermission is read-only from browser state
+  };
+
   // ============ CONSTANTS & PRESETS ============
 
   const stoveTypes = [
@@ -934,6 +977,21 @@ const EggCalculator = () => {
                   ⚠️ {t('coldWeatherWarning')}
                 </div>
               )}
+            </div>
+
+            {/* Reset Button */}
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <button
+                onClick={() => {
+                  const message = `${t('resetConfirm')}\n\n${t('resetWarning')}`;
+                  if (window.confirm(message)) {
+                    handleResetToDefaults();
+                  }
+                }}
+                className="w-full py-2 px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm"
+              >
+                🔄 {t('resetToDefaults')}
+              </button>
             </div>
           </div>
         )}
