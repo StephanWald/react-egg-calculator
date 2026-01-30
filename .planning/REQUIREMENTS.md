@@ -16,8 +16,8 @@ Requirements for hardening milestone. Each maps to roadmap phases.
 
 ### Refactoring
 
-- [ ] **REFAC-01**: Physics calculations extracted into pure functions in dedicated module (independently importable, no React dependency)
-- [ ] **REFAC-02**: Formatting/conversion utilities and constants extracted into separate modules
+- [x] **REFAC-01**: Physics calculations extracted into pure functions in dedicated module (independently importable, no React dependency)
+- [x] **REFAC-02**: Formatting/conversion utilities and constants extracted into separate modules
 - [ ] **REFAC-03**: UI sections extracted into focused components (SettingsPanel, TimerOverlay, ConsistencyPicker, ResultDisplay, EggInputs, LocationPressure, ConfigDialog)
 - [ ] **REFAC-04**: API integrations extracted into service modules (Open-Meteo pressure, Nominatim geocoding)
 
@@ -88,8 +88,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TEST-02 | Phase 5 | Pending |
 | TEST-03 | Phase 1 | Complete |
 | TEST-04 | Phase 4 | Pending |
-| REFAC-01 | Phase 3 | Pending |
-| REFAC-02 | Phase 3 | Pending |
+| REFAC-01 | Phase 3 | Complete |
+| REFAC-02 | Phase 3 | Complete |
 | REFAC-03 | Phase 5 | Pending |
 | REFAC-04 | Phase 4 | Pending |
 | MOBI-01 | Phase 6 | Pending |
@@ -107,4 +107,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-30 after Phase 2 completion*
+*Last updated: 2026-01-30 after Phase 3 completion*
