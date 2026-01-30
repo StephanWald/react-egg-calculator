@@ -84,27 +84,27 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TEST-01 | — | Pending |
-| TEST-02 | — | Pending |
-| TEST-03 | — | Pending |
-| TEST-04 | — | Pending |
-| REFAC-01 | — | Pending |
-| REFAC-02 | — | Pending |
-| REFAC-03 | — | Pending |
-| REFAC-04 | — | Pending |
-| MOBI-01 | — | Pending |
-| MOBI-02 | — | Pending |
-| MOBI-03 | — | Pending |
-| MOBI-04 | — | Pending |
-| QUAL-01 | — | Pending |
-| QUAL-02 | — | Pending |
-| QUAL-03 | — | Pending |
+| TEST-01 | Phase 2 | Pending |
+| TEST-02 | Phase 5 | Pending |
+| TEST-03 | Phase 1 | Pending |
+| TEST-04 | Phase 4 | Pending |
+| REFAC-01 | Phase 3 | Pending |
+| REFAC-02 | Phase 3 | Pending |
+| REFAC-03 | Phase 5 | Pending |
+| REFAC-04 | Phase 4 | Pending |
+| MOBI-01 | Phase 6 | Pending |
+| MOBI-02 | Phase 6 | Pending |
+| MOBI-03 | Phase 6 | Pending |
+| MOBI-04 | Phase 6 | Pending |
+| QUAL-01 | Phase 7 | Pending |
+| QUAL-02 | Phase 7 | Pending |
+| QUAL-03 | Phase 7 | Pending |
 
 **Coverage:**
 - v1 requirements: 15 total
-- Mapped to phases: 0
-- Unmapped: 15 (awaiting roadmap)
+- Mapped to phases: 15
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-30 after initial definition*
+*Last updated: 2026-01-30 after roadmap creation*
