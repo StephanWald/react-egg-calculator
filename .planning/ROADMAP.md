@@ -13,7 +13,7 @@ This roadmap hardens the existing egg calculator through systematic refactoring,
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Test Infrastructure** - Vitest/RTL setup with coverage and watch mode
-- [ ] **Phase 2: Physics Validation** - Unit tests prove calculations correct before refactoring
+- [x] **Phase 2: Physics Validation** - Unit tests prove calculations correct before refactoring
 - [ ] **Phase 3: Utilities Extraction** - Pure functions (physics, formatters, constants) extracted
 - [ ] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
 - [ ] **Phase 5: Component Extraction** - UI sections split into focused components
@@ -51,8 +51,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Extract physics functions from component into physics.js module
-- [ ] 02-02-PLAN.md -- Comprehensive unit tests for all physics calculations (40+ test cases)
+- [x] 02-01-PLAN.md -- Extract physics functions from component into physics.js module
+- [x] 02-02-PLAN.md -- Comprehensive unit tests for all physics calculations (40+ test cases)
 
 ### Phase 3: Utilities Extraction
 **Goal**: Pure functions extracted into independent modules with no React dependencies
@@ -143,7 +143,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
-| 2. Physics Validation | 0/2 | Planned | - |
+| 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
 | 3. Utilities Extraction | 0/? | Not started | - |
 | 4. Services & Hooks | 0/? | Not started | - |
 | 5. Component Extraction | 0/? | Not started | - |
