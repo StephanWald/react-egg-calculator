@@ -82,10 +82,12 @@ Plans:
   5. Settings persistence extracted into useSettings hook with localStorage tests
   6. Unit conversion extracted into useUnitConversion hook with tests
   7. All hooks independently testable (no component mounting required)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: [Plan description pending]
+- [ ] 04-01-PLAN.md -- API services + useSettings + useUnitConversion with tests
+- [ ] 04-02-PLAN.md -- useTimerLogic + useLocationPressure hooks with tests
+- [ ] 04-03-PLAN.md -- Rewire component to use all hooks, verify parity
 
 ### Phase 5: Component Extraction
 **Goal**: UI sections extracted into focused components under 400 lines each
@@ -146,7 +148,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
 | 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
-| 4. Services & Hooks | 0/? | Not started | - |
+| 4. Services & Hooks | 0/3 | Not started | - |
 | 5. Component Extraction | 0/? | Not started | - |
 | 6. Mobile Responsiveness | 0/? | Not started | - |
 | 7. Quality & Polish | 0/? | Not started | - |
