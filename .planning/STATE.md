@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** Accurate egg cooking times based on real physics — thermodynamic calculations must remain correct through all refactoring
-**Current focus:** Physics Validation (Phase 2)
+**Current focus:** Physics Validation (Phase 2) -- COMPLETE
 
 ## Current Position
 
 Phase: 2 of 7 (Physics Validation)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-30 — Completed 02-01-PLAN.md (Extract Physics Functions)
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-30 — Completed 02-02-PLAN.md (Comprehensive Physics Unit Tests)
 
-Progress: [██░░░░░░░░] 28.6% (2/7 phases started)
+Progress: [███░░░░░░░] 28.6% (2/7 phases started, Phase 2 complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: 2 min
-- Total execution time: 0.07 hours
+- Total execution time: 0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Test Infrastructure | 1 | 2 min | 2 min |
-| 02 Physics Validation | 1 | 2 min | 2 min |
+| 02 Physics Validation | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min), 02-01 (2 min)
+- Last 5 plans: 01-01 (2 min), 02-01 (2 min), 02-02 (2 min)
 - Trend: Stable at ~2 min/plan
 
 *Updated after each plan completion*
@@ -49,6 +49,8 @@ Recent decisions affecting current work:
 - Global test setup: jest-dom matchers available without per-file imports (Implemented - 01-01)
 - Extract physics first: Pure functions are easiest to test and most critical to verify (Implemented - 02-01)
 - potHeatCapacity as parameter: Keeps physics.js free of UI data structures (Implemented - 02-01)
+- Table-driven tests with it.each: Reduces boilerplate for atmospheric conversion tests (Implemented - 02-02)
+- Comparison operators over exact values: Tests physical relationships, not implementation details (Implemented - 02-02)
 - Fix mobile via responsive Tailwind: Already using Tailwind, leverage responsive utilities (Pending - Phase 05)
 
 ### Pending Todos
@@ -61,7 +63,7 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-30 17:32
-Stopped at: Completed Phase 02 Plan 01 - Extract Physics Functions
+Last session: 2026-01-30 17:36
+Stopped at: Completed Phase 02 Plan 02 - Comprehensive Physics Unit Tests
 Resume file: None
-Next: Phase 02 Plan 02 (Physics Unit Tests) ready to begin
+Next: Phase 03 (Component Tests) ready to begin
