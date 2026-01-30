@@ -12,7 +12,7 @@ This roadmap hardens the existing egg calculator through systematic refactoring,
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Test Infrastructure** - Vitest/RTL setup with coverage and watch mode
+- [x] **Phase 1: Test Infrastructure** - Vitest/RTL setup with coverage and watch mode
 - [ ] **Phase 2: Physics Validation** - Unit tests prove calculations correct before refactoring
 - [ ] **Phase 3: Utilities Extraction** - Pure functions (physics, formatters, constants) extracted
 - [ ] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
@@ -141,7 +141,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Test Infrastructure | 0/1 | Planning complete | - |
+| 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
 | 2. Physics Validation | 0/? | Not started | - |
 | 3. Utilities Extraction | 0/? | Not started | - |
 | 4. Services & Hooks | 0/? | Not started | - |

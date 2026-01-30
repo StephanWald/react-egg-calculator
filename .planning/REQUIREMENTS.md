@@ -11,7 +11,7 @@ Requirements for hardening milestone. Each maps to roadmap phases.
 
 - [ ] **TEST-01**: Physics calculations have unit tests covering Williams formula, boiling point from pressure, pressure from boiling point, altitude from pressure, and energy consumption
 - [ ] **TEST-02**: Formatter functions have unit tests for temperature, volume, weight, pressure, and time display formatting
-- [ ] **TEST-03**: Vitest test infrastructure configured with jsdom, coverage reporting (v8), and watch mode
+- [x] **TEST-03**: Vitest test infrastructure configured with jsdom, coverage reporting (v8), and watch mode
 - [ ] **TEST-04**: Custom hooks have tests for timer logic, location/pressure detection, settings persistence, and unit conversion
 
 ### Refactoring
@@ -86,7 +86,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | TEST-01 | Phase 2 | Pending |
 | TEST-02 | Phase 5 | Pending |
-| TEST-03 | Phase 1 | Pending |
+| TEST-03 | Phase 1 | Complete |
 | TEST-04 | Phase 4 | Pending |
 | REFAC-01 | Phase 3 | Pending |
 | REFAC-02 | Phase 3 | Pending |
@@ -107,4 +107,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-30 after roadmap creation*
+*Last updated: 2026-01-30 after Phase 1 completion*
