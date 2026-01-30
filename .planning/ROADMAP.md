@@ -64,10 +64,11 @@ Plans:
   3. Constants extracted into constants.js (no magic numbers in components)
   4. All extracted functions pass existing tests without modification
   5. Main component still renders identically (visual regression verified)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: [Plan description pending]
+- [ ] 03-01-PLAN.md -- Extract constants and converters into standalone modules with tests
+- [ ] 03-02-PLAN.md -- Extract formatters, rewire component imports, verify visual parity
 
 ### Phase 4: Services & Hooks
 **Goal**: API services and custom hooks extracted from monolithic component
@@ -144,7 +145,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
 | 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
-| 3. Utilities Extraction | 0/? | Not started | - |
+| 3. Utilities Extraction | 0/2 | Not started | - |
 | 4. Services & Hooks | 0/? | Not started | - |
 | 5. Component Extraction | 0/? | Not started | - |
 | 6. Mobile Responsiveness | 0/? | Not started | - |
