@@ -32,10 +32,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `npm run test:watch` starts watch mode for TDD workflow
   4. React Testing Library matchers available in all test files
   5. Example smoke test proves setup works (app renders without crashing)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: [Plan description pending]
+- [ ] 01-01-PLAN.md -- Configure Vitest, RTL, jsdom, coverage, and smoke test
 
 ### Phase 2: Physics Validation
 **Goal**: All physics calculations have passing unit tests proving correctness
@@ -137,11 +137,11 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Test Infrastructure | 0/? | Not started | - |
+| 1. Test Infrastructure | 0/1 | Planning complete | - |
 | 2. Physics Validation | 0/? | Not started | - |
 | 3. Utilities Extraction | 0/? | Not started | - |
 | 4. Services & Hooks | 0/? | Not started | - |
