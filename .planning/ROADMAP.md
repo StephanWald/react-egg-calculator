@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md -- Configure Vitest, RTL, jsdom, coverage, and smoke test
+- [x] 01-01-PLAN.md -- Configure Vitest, RTL, jsdom, coverage, and smoke test
 
 ### Phase 2: Physics Validation
 **Goal**: All physics calculations have passing unit tests proving correctness
@@ -48,10 +48,11 @@ Plans:
   4. Altitude from pressure calculation tested against barometric formula
   5. Energy consumption calculation tested with all heating components
   6. All tests pass at 100% coverage for physics functions
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: [Plan description pending]
+- [ ] 02-01-PLAN.md -- Extract physics functions from component into physics.js module
+- [ ] 02-02-PLAN.md -- Comprehensive unit tests for all physics calculations (40+ test cases)
 
 ### Phase 3: Utilities Extraction
 **Goal**: Pure functions extracted into independent modules with no React dependencies
@@ -142,7 +143,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
-| 2. Physics Validation | 0/? | Not started | - |
+| 2. Physics Validation | 0/2 | Planned | - |
 | 3. Utilities Extraction | 0/? | Not started | - |
 | 4. Services & Hooks | 0/? | Not started | - |
 | 5. Component Extraction | 0/? | Not started | - |
