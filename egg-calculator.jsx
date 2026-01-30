@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from './useTranslation';
+import {
+  calculateBoilingPointFromPressure,
+  calculatePressureFromBoilingPoint,
+  calculateAltitudeFromPressure,
+  calculateTime as calculateTimePhysics,
+} from './physics';
 
 const EggCalculator = () => {
   const { t, lang, setLanguage, languages } = useTranslation();
@@ -301,18 +307,6 @@ const EggCalculator = () => {
 
   // ============ FORMULAS ============
 
-  const calculateBoilingPointFromPressure = (pressureHPa) => {
-    return Math.round((100 + 0.037 * (pressureHPa - 1013.25)) * 10) / 10;
-  };
-
-  const calculatePressureFromBoilingPoint = (tempC) => {
-    return Math.round(((tempC - 100) / 0.037 + 1013.25) * 10) / 10;
-  };
-
-  const calculateAltitudeFromPressure = (pressureHPa) => {
-    return Math.round(44330 * (1 - Math.pow(pressureHPa / 1013.25, 0.1903)));
-  };
-
   const getPotHeatCapacity = () => {
     return potMaterials.find(m => m.id === potMaterial)?.heatCapacity || 0.5;
   };
@@ -423,65 +417,20 @@ const EggCalculator = () => {
       stovePower, stoveEfficiency, potWeight, potMaterial, waterStartTemp, ambientTemp]);
 
   const calculateTime = () => {
-    if (weight > 0 && boilingPoint > targetTemp && targetTemp > startTemp) {
-      const M = weight;
-      const Tw = boilingPoint;
-      const T0 = startTemp;
-      const Tz = targetTemp;
+    const potHeatCap = getPotHeatCapacity();
+    const result = calculateTimePhysics({
+      weight, startTemp, targetTemp, boilingPoint, eggCount, waterVolume,
+      stovePower, stoveEfficiency, potWeight, potHeatCapacity: potHeatCap,
+      waterStartTemp, ambientTemp,
+    });
 
-      const c_water = 4.18;
-      const c_egg = 3.5;
-      const c_pot = getPotHeatCapacity();
-
-      const m_water = waterVolume;
-      const m_eggs = (eggCount * M) / 1000;
-      const m_pot = potWeight;
-
-      const Q_water = m_water * c_water;
-      const Q_eggs = m_eggs * c_egg;
-      const T_drop = (Q_water * Tw + Q_eggs * T0) / (Q_water + Q_eggs);
-
-      setTempDrop(Math.round((Tw - T_drop) * 10) / 10);
-
-      const tempDiffReference = 80;
-      const tempDiffActual = Tw - ambientTemp;
-      const heatLossFactor = tempDiffActual / tempDiffReference;
-
-      const powerFactor = Math.min(1, stovePower / 2000) * stoveEfficiency;
-      const baseRecoveryFactor = Math.min(0.85, 0.5 + (waterVolume / (eggCount * M / 1000)) * 0.1);
-
-      const effectivePowerRatio = powerFactor / heatLossFactor;
-      const recoveryFactor = baseRecoveryFactor * Math.min(1, 0.5 + 0.5 * effectivePowerRatio);
-
-      const T_eff = T_drop + recoveryFactor * (Tw - T_drop);
-
-      setEffectiveTemp(Math.round(T_eff * 10) / 10);
-
-      const K = 0.451;
-      const ratio = 0.76 * (T0 - T_eff) / (Tz - T_eff);
-      const t_real = K * Math.pow(M, 2/3) * Math.log(ratio);
-
-      const ratio_ideal = 0.76 * (T0 - Tw) / (Tz - Tw);
-      const t_ideal = K * Math.pow(M, 2/3) * Math.log(ratio_ideal);
-
-      const Q_water_heating = m_water * c_water * (Tw - waterStartTemp);
-      const Q_pot_heating = m_pot * c_pot * (Tw - waterStartTemp);
-      const Q_eggs_heating = m_eggs * c_egg * (Tz - T0);
-
-      const cookingMinutes = Math.max(3, t_real);
-      const heatLossPerMinute = 0.5 * heatLossFactor;
-      const Q_ambient_loss = cookingMinutes * heatLossPerMinute;
-
-      const Q_total = (Q_water_heating + Q_pot_heating + Q_eggs_heating + Q_ambient_loss) / stoveEfficiency;
-
-      setTotalEnergy(Math.round(Q_total));
-
-      const effectivePower = (stovePower / 1000) * stoveEfficiency;
-      const t_heating = Q_water_heating / effectivePower / 60;
-      setHeatingTime(Math.round(t_heating * 10) / 10);
-
-      setIdealTime(Math.max(0, t_ideal));
-      setCookingTime(Math.max(0, t_real));
+    if (result) {
+      setCookingTime(result.cookingTime);
+      setTempDrop(result.tempDrop);
+      setEffectiveTemp(result.effectiveTemp);
+      setIdealTime(result.idealTime);
+      setTotalEnergy(result.totalEnergy);
+      setHeatingTime(result.heatingTime);
     } else {
       setCookingTime(null);
       setTempDrop(null);
