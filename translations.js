@@ -144,8 +144,8 @@ export const translations = {
     subtitle: 'Physikalisch korrekt mit Luftdruck & Thermodynamik',
 
     // Settings panel
-    settingsToggle: 'Haushalt-Einstellungen',
-    settingsTitle: 'Haushalt-Einstellungen',
+    settingsToggle: 'Einstellungen',
+    settingsTitle: 'Einstellungen',
     settingsHint: 'Diese Einstellungen können für Ihren Haushalt gespeichert werden.',
 
     // Stove types
@@ -157,13 +157,13 @@ export const translations = {
     stoveCamping: 'Camping',
 
     // Stove power
-    stovePower: 'Herdleistung',
+    stovePower: 'Leistung',
     stovePowerWeak: 'schwach',
     stovePowerStrong: 'stark',
 
     // Pot
-    potMaterial: 'Topfmaterial',
-    potWeight: 'Topfgewicht',
+    potMaterial: 'Material',
+    potWeight: 'Gewicht',
     materialSteel: 'Edelstahl',
     materialAluminum: 'Aluminium',
     materialCastIron: 'Gusseisen',
@@ -172,11 +172,11 @@ export const translations = {
 
     // Temperatures
     temperatures: 'Temperaturen',
-    waterTemp: 'Wassertemperatur',
+    waterTemp: 'Wasser-Temp.',
     waterTempHint: 'Leitungs-/Quellwasser zu Beginn',
     waterTempCold: 'Bach',
     waterTempWarm: 'Warm',
-    ambientTemp: 'Umgebungstemperatur',
+    ambientTemp: 'Umgebungs-Temp.',
     ambientTempHint: 'Luft am Kochort',
     ambientWinter: 'Winter',
     ambientSummer: 'Sommer',
@@ -251,10 +251,10 @@ export const translations = {
 
     // Config Dialog
     configDialogTitle: 'Einstellungen',
-    configTempUnit: 'Temperatureinheit',
-    configVolumeUnit: 'Volumeneinheit',
-    configWeightUnit: 'Gewichtseinheit',
-    configPressureUnit: 'Druckeinheit',
+    configTempUnit: 'Temperatur',
+    configVolumeUnit: 'Volumen',
+    configWeightUnit: 'Gewicht',
+    configPressureUnit: 'Druck',
     configLanguage: 'Sprache',
     resetToDefaults: 'Zurücksetzen',
     resetConfirm: 'Sind Sie sicher, dass Sie alle Einstellungen auf die Standardwerte zurücksetzen möchten?',
@@ -280,12 +280,12 @@ export const translations = {
     subtitle: 'Physiquement précis avec pression atmosphérique & thermodynamique',
 
     // Settings panel
-    settingsToggle: 'Paramètres du foyer',
-    settingsTitle: 'Paramètres du foyer',
+    settingsToggle: 'Paramètres',
+    settingsTitle: 'Paramètres',
     settingsHint: 'Ces paramètres peuvent être enregistrés pour votre foyer.',
 
     // Stove types
-    stoveType: 'Type de cuisinière',
+    stoveType: 'Type de plaque',
     stoveInduction: 'Induction',
     stoveCeramic: 'Vitrocéramique',
     stoveElectric: 'Fonte',
@@ -298,8 +298,8 @@ export const translations = {
     stovePowerStrong: 'forte',
 
     // Pot
-    potMaterial: 'Matériau casserole',
-    potWeight: 'Poids casserole',
+    potMaterial: 'Matériau',
+    potWeight: 'Poids',
     materialSteel: 'Inox',
     materialAluminum: 'Aluminium',
     materialCastIron: 'Fonte',
@@ -328,12 +328,12 @@ export const translations = {
     effectiveTemp: 'Température effective',
 
     // Location & Pressure
-    locationPressure: 'Position & Pression atmosphérique',
+    locationPressure: 'Position & Pression',
     detectingLocation: 'Détection...',
     gpsWeather: 'GPS + Météo',
-    airPressure: 'Pression atm.',
-    boilingPoint: 'Point d\'ébullition',
-    altitudeApprox: 'Altitude (env.)',
+    airPressure: 'Pression',
+    boilingPoint: 'Ébullition',
+    altitudeApprox: 'Altitude',
     currentPressureSource: 'Pression actuelle via Open-Meteo',
     locationDenied: 'Accès position refusé',
     positionUnavailable: 'Position indisponible',
@@ -355,8 +355,8 @@ export const translations = {
     eggSize: 'Taille œuf',
 
     // Start temperature
-    startTemp: 'Température initiale œuf',
-    tempFridge: 'Réfrigérateur',
+    startTemp: 'Température œuf',
+    tempFridge: 'Frigo',
     tempCool: 'Frais',
     tempRoom: 'Temp. amb.',
 
@@ -387,10 +387,10 @@ export const translations = {
 
     // Config Dialog
     configDialogTitle: 'Paramètres',
-    configTempUnit: 'Unité de température',
-    configVolumeUnit: 'Unité de volume',
-    configWeightUnit: 'Unité de poids',
-    configPressureUnit: 'Unité de pression',
+    configTempUnit: 'Température',
+    configVolumeUnit: 'Volume',
+    configWeightUnit: 'Poids',
+    configPressureUnit: 'Pression',
     configLanguage: 'Langue',
     resetToDefaults: 'Réinitialiser',
     resetConfirm: 'Êtes-vous sûr de vouloir réinitialiser tous les paramètres aux valeurs par défaut ?',
@@ -416,15 +416,15 @@ export const translations = {
     subtitle: 'Físicamente precisa con presión atmosférica y termodinámica',
 
     // Settings panel
-    settingsToggle: 'Configuración del hogar',
-    settingsTitle: 'Configuración del hogar',
+    settingsToggle: 'Configuración',
+    settingsTitle: 'Configuración',
     settingsHint: 'Estos ajustes se pueden guardar para su hogar.',
 
     // Stove types
-    stoveType: 'Tipo de cocina',
+    stoveType: 'Tipo de placa',
     stoveInduction: 'Inducción',
     stoveCeramic: 'Vitrocerámica',
-    stoveElectric: 'Hierro fundido',
+    stoveElectric: 'Fundido',
     stoveGas: 'Gas',
     stoveCamping: 'Camping',
 
@@ -434,8 +434,8 @@ export const translations = {
     stovePowerStrong: 'alta',
 
     // Pot
-    potMaterial: 'Material olla',
-    potWeight: 'Peso olla',
+    potMaterial: 'Material',
+    potWeight: 'Peso',
     materialSteel: 'Acero inox.',
     materialAluminum: 'Aluminio',
     materialCastIron: 'Hierro fundido',
@@ -444,7 +444,7 @@ export const translations = {
 
     // Temperatures
     temperatures: 'Temperaturas',
-    waterTemp: 'Temperatura agua',
+    waterTemp: 'Temp. agua',
     waterTempHint: 'Agua del grifo/manantial al inicio',
     waterTempCold: 'Arroyo',
     waterTempWarm: 'Tibia',
@@ -464,12 +464,12 @@ export const translations = {
     effectiveTemp: 'Temperatura efectiva',
 
     // Location & Pressure
-    locationPressure: 'Ubicación y Presión atmosférica',
+    locationPressure: 'Ubicación y Presión',
     detectingLocation: 'Detectando...',
     gpsWeather: 'GPS + Clima',
-    airPressure: 'Presión atm.',
-    boilingPoint: 'Punto ebullición',
-    altitudeApprox: 'Altitud (aprox.)',
+    airPressure: 'Presión',
+    boilingPoint: 'Ebullición',
+    altitudeApprox: 'Altitud',
     currentPressureSource: 'Presión actual de Open-Meteo',
     locationDenied: 'Acceso a ubicación denegado',
     positionUnavailable: 'Posición no disponible',
@@ -491,7 +491,7 @@ export const translations = {
     eggSize: 'Tamaño huevo',
 
     // Start temperature
-    startTemp: 'Temperatura inicial huevo',
+    startTemp: 'Temp. huevo',
     tempFridge: 'Nevera',
     tempCool: 'Fresco',
     tempRoom: 'Temp. amb.',
@@ -523,10 +523,10 @@ export const translations = {
 
     // Config Dialog
     configDialogTitle: 'Configuración',
-    configTempUnit: 'Unidad de temperatura',
-    configVolumeUnit: 'Unidad de volumen',
-    configWeightUnit: 'Unidad de peso',
-    configPressureUnit: 'Unidad de presión',
+    configTempUnit: 'Temperatura',
+    configVolumeUnit: 'Volumen',
+    configWeightUnit: 'Peso',
+    configPressureUnit: 'Presión',
     configLanguage: 'Idioma',
     resetToDefaults: 'Restablecer',
     resetConfirm: '¿Está seguro de que desea restablecer todas las configuraciones a sus valores predeterminados?',
@@ -552,12 +552,12 @@ export const translations = {
     subtitle: 'Fisicamente accurato con pressione atmosferica e termodinamica',
 
     // Settings panel
-    settingsToggle: 'Impostazioni domestiche',
-    settingsTitle: 'Impostazioni domestiche',
+    settingsToggle: 'Impostazioni',
+    settingsTitle: 'Impostazioni',
     settingsHint: 'Queste impostazioni possono essere salvate per la tua casa.',
 
     // Stove types
-    stoveType: 'Tipo di fornello',
+    stoveType: 'Tipo di piano',
     stoveInduction: 'Induzione',
     stoveCeramic: 'Vetroceramica',
     stoveElectric: 'Ghisa',
@@ -570,8 +570,8 @@ export const translations = {
     stovePowerStrong: 'alta',
 
     // Pot
-    potMaterial: 'Materiale pentola',
-    potWeight: 'Peso pentola',
+    potMaterial: 'Materiale',
+    potWeight: 'Peso',
     materialSteel: 'Acciaio inox',
     materialAluminum: 'Alluminio',
     materialCastIron: 'Ghisa',
@@ -580,11 +580,11 @@ export const translations = {
 
     // Temperatures
     temperatures: 'Temperature',
-    waterTemp: 'Temperatura acqua',
+    waterTemp: 'Temp. acqua',
     waterTempHint: 'Acqua del rubinetto/sorgente all\'inizio',
     waterTempCold: 'Ruscello',
     waterTempWarm: 'Tiepida',
-    ambientTemp: 'Temperatura ambiente',
+    ambientTemp: 'Temp. ambiente',
     ambientTempHint: 'Aria nel luogo di cottura',
     ambientWinter: 'Inverno',
     ambientSummer: 'Estate',
@@ -600,12 +600,12 @@ export const translations = {
     effectiveTemp: 'Temperatura effettiva',
 
     // Location & Pressure
-    locationPressure: 'Posizione e Pressione atmosferica',
+    locationPressure: 'Posizione e Pressione',
     detectingLocation: 'Rilevamento...',
     gpsWeather: 'GPS + Meteo',
-    airPressure: 'Pressione atm.',
-    boilingPoint: 'Punto ebollizione',
-    altitudeApprox: 'Altitudine (ca.)',
+    airPressure: 'Pressione',
+    boilingPoint: 'Ebollizione',
+    altitudeApprox: 'Altitudine',
     currentPressureSource: 'Pressione attuale da Open-Meteo',
     locationDenied: 'Accesso posizione negato',
     positionUnavailable: 'Posizione non disponibile',
@@ -627,8 +627,8 @@ export const translations = {
     eggSize: 'Dimensione uovo',
 
     // Start temperature
-    startTemp: 'Temperatura iniziale uovo',
-    tempFridge: 'Frigorifero',
+    startTemp: 'Temp. uovo',
+    tempFridge: 'Frigo',
     tempCool: 'Fresco',
     tempRoom: 'Temp. amb.',
 
@@ -659,10 +659,10 @@ export const translations = {
 
     // Config Dialog
     configDialogTitle: 'Impostazioni',
-    configTempUnit: 'Unità di temperatura',
-    configVolumeUnit: 'Unità di volume',
-    configWeightUnit: 'Unità di peso',
-    configPressureUnit: 'Unità di pressione',
+    configTempUnit: 'Temperatura',
+    configVolumeUnit: 'Volume',
+    configWeightUnit: 'Peso',
+    configPressureUnit: 'Pressione',
     configLanguage: 'Lingua',
     resetToDefaults: 'Ripristina',
     resetConfirm: 'Sei sicuro di voler ripristinare tutte le impostazioni ai valori predefiniti?',
@@ -688,15 +688,15 @@ export const translations = {
     subtitle: 'Fisicamente precisa com pressão atmosférica e termodinâmica',
 
     // Settings panel
-    settingsToggle: 'Configurações domésticas',
-    settingsTitle: 'Configurações domésticas',
+    settingsToggle: 'Configurações',
+    settingsTitle: 'Configurações',
     settingsHint: 'Estas configurações podem ser guardadas para a sua casa.',
 
     // Stove types
-    stoveType: 'Tipo de fogão',
+    stoveType: 'Tipo de placa',
     stoveInduction: 'Indução',
     stoveCeramic: 'Vitrocerâmica',
-    stoveElectric: 'Ferro fundido',
+    stoveElectric: 'Fundido',
     stoveGas: 'Gás',
     stoveCamping: 'Campismo',
 
@@ -706,8 +706,8 @@ export const translations = {
     stovePowerStrong: 'forte',
 
     // Pot
-    potMaterial: 'Material panela',
-    potWeight: 'Peso panela',
+    potMaterial: 'Material',
+    potWeight: 'Peso',
     materialSteel: 'Aço inox',
     materialAluminum: 'Alumínio',
     materialCastIron: 'Ferro fundido',
@@ -716,11 +716,11 @@ export const translations = {
 
     // Temperatures
     temperatures: 'Temperaturas',
-    waterTemp: 'Temperatura água',
+    waterTemp: 'Temp. água',
     waterTempHint: 'Água da torneira/nascente no início',
     waterTempCold: 'Ribeiro',
     waterTempWarm: 'Morna',
-    ambientTemp: 'Temperatura ambiente',
+    ambientTemp: 'Temp. ambiente',
     ambientTempHint: 'Ar no local de cozedura',
     ambientWinter: 'Inverno',
     ambientSummer: 'Verão',
@@ -736,12 +736,12 @@ export const translations = {
     effectiveTemp: 'Temperatura efetiva',
 
     // Location & Pressure
-    locationPressure: 'Localização e Pressão atmosférica',
+    locationPressure: 'Localização e Pressão',
     detectingLocation: 'A detetar...',
     gpsWeather: 'GPS + Meteorologia',
-    airPressure: 'Pressão atm.',
-    boilingPoint: 'Ponto ebulição',
-    altitudeApprox: 'Altitude (aprox.)',
+    airPressure: 'Pressão',
+    boilingPoint: 'Ebulição',
+    altitudeApprox: 'Altitude',
     currentPressureSource: 'Pressão atual do Open-Meteo',
     locationDenied: 'Acesso à localização negado',
     positionUnavailable: 'Posição indisponível',
@@ -763,7 +763,7 @@ export const translations = {
     eggSize: 'Tamanho ovo',
 
     // Start temperature
-    startTemp: 'Temperatura inicial ovo',
+    startTemp: 'Temp. ovo',
     tempFridge: 'Frigorífico',
     tempCool: 'Fresco',
     tempRoom: 'Temp. amb.',
@@ -795,10 +795,10 @@ export const translations = {
 
     // Config Dialog
     configDialogTitle: 'Configurações',
-    configTempUnit: 'Unidade de temperatura',
-    configVolumeUnit: 'Unidade de volume',
-    configWeightUnit: 'Unidade de peso',
-    configPressureUnit: 'Unidade de pressão',
+    configTempUnit: 'Temperatura',
+    configVolumeUnit: 'Volume',
+    configWeightUnit: 'Peso',
+    configPressureUnit: 'Pressão',
     configLanguage: 'Idioma',
     resetToDefaults: 'Repor predefinições',
     resetConfirm: 'Tem certeza de que deseja repor todas as configurações para os valores predefinidos?',
