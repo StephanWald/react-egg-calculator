@@ -139,10 +139,11 @@ Plans:
   3. Keyboard navigation functional with correct tab order
   4. Visible focus indicators on all interactive elements
   5. No keyboard traps (can escape all dialogs/overlays with keyboard)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: [Plan description pending]
+- [ ] 07-01-PLAN.md -- Error boundaries at 3 strategic locations + silent pressure input clamping
+- [ ] 07-02-PLAN.md -- Focus-visible indicators on all interactive elements + keyboard nav verification
 
 ## Progress
 
@@ -157,4 +158,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
 | 5. Component Extraction | 4/4 | Complete ✓ | 2026-01-31 |
 | 6. Mobile Responsiveness | 4/4 | Complete ✓ | 2026-01-31 |
-| 7. Quality & Polish | 0/? | Not started | - |
+| 7. Quality & Polish | 0/2 | Not started | - |
