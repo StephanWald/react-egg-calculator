@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 ## Current Position
 
 Phase: 4 of 7 (Services & Hooks)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-31 — Completed 04-01-PLAN.md (API Services & Foundation Hooks)
+Last activity: 2026-01-31 — Completed 04-02-PLAN.md (Complex Hooks: Timer + Location/Pressure)
 
-Progress: [██████░░░░] 54.5% (6/11 plans complete)
+Progress: [██████░░░░] 63.6% (7/11 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: 2.7 min
-- Total execution time: 0.27 hours
+- Total execution time: 0.32 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [██████░░░░] 54.5% (6/11 plans complete)
 | 01 Test Infrastructure | 1 | 2 min | 2 min |
 | 02 Physics Validation | 2 | 4 min | 2 min |
 | 03 Utilities Extraction | 2 | 6 min | 3 min |
-| 04 Services & Hooks | 1 | 2 min | 2 min |
+| 04 Services & Hooks | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (2 min), 03-01 (2 min), 03-02 (4 min), 04-01 (2 min)
+- Last 5 plans: 03-01 (2 min), 03-02 (4 min), 04-01 (2 min), 04-02 (3 min)
 - Trend: Stable at ~2-4 min/plan
 
 *Updated after each plan completion*
@@ -61,6 +61,9 @@ Recent decisions affecting current work:
 - Single state object for useSettings: Avoids infinite save loop pitfall with auto-persist useEffect (Implemented - 04-01)
 - Parameter-based useUnitConversion: Decoupled from useSettings, receives initial values (Implemented - 04-01)
 - DEFAULTS exported from useSettings: Enables test reference and future hook composition (Implemented - 04-01)
+- Timer hook owns all side effects: Notification/vibration/audio triggered by state transitions (Implemented - 04-02)
+- Hook error codes not translated strings: Hooks return PERMISSION_DENIED etc, component maps to t() (Implemented - 04-02)
+- Class-based mocks for constructors: vi.fn() cannot be used with `new`, use real class definitions (Implemented - 04-02)
 - Fix mobile via responsive Tailwind: Already using Tailwind, leverage responsive utilities (Pending - Phase 06)
 
 ### Pending Todos
@@ -73,7 +76,7 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-31 01:49
-Stopped at: Completed Phase 04 Plan 01 - API Services & Foundation Hooks
+Last session: 2026-01-31 01:55
+Stopped at: Completed Phase 04 Plan 02 - Complex Hooks (Timer + Location/Pressure)
 Resume file: None
-Next: Phase 04 Plan 02 (useTimerLogic + useLocationPressure hooks) ready to begin
+Next: Phase 04 Plan 03 (useCalculation hook) ready to begin
