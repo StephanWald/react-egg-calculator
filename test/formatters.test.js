@@ -22,6 +22,18 @@ describe('formatTime', () => {
   it('returns "--:--" for null', () => {
     expect(formatTime(null)).toBe('--:--');
   });
+
+  it('returns "NaN:NaN" for undefined', () => {
+    expect(formatTime(undefined)).toBe('NaN:NaN');
+  });
+
+  it('formats very large values (999.99 minutes)', () => {
+    expect(formatTime(999.99)).toBe('999:59');
+  });
+
+  it('handles 59-second rounding edge (1.99 minutes)', () => {
+    expect(formatTime(1.99)).toBe('1:59');
+  });
 });
 
 describe('formatTimerDisplay', () => {
@@ -35,6 +47,18 @@ describe('formatTimerDisplay', () => {
 
   it('returns "--:--" for null', () => {
     expect(formatTimerDisplay(null)).toBe('--:--');
+  });
+
+  it('returns "NaN:NaN" for undefined', () => {
+    expect(formatTimerDisplay(undefined)).toBe('NaN:NaN');
+  });
+
+  it('formats large seconds (3661 seconds = over an hour)', () => {
+    expect(formatTimerDisplay(3661)).toBe('61:01');
+  });
+
+  it('formats exactly 60 seconds', () => {
+    expect(formatTimerDisplay(60)).toBe('1:00');
   });
 });
 
@@ -54,6 +78,14 @@ describe('formatCountdown', () => {
   it('returns "00:00" for negative values', () => {
     expect(formatCountdown(-5)).toBe('00:00');
   });
+
+  it('returns "NaN:NaN" for undefined', () => {
+    expect(formatCountdown(undefined)).toBe('NaN:NaN');
+  });
+
+  it('formats large values (3600+ seconds = over an hour)', () => {
+    expect(formatCountdown(3661)).toBe('61:01');
+  });
 });
 
 describe('formatTemp', () => {
@@ -65,6 +97,10 @@ describe('formatTemp', () => {
     ])('formats %d°C as %s', (tempC, expected) => {
       expect(formatTemp(tempC, 'C')).toBe(expected);
     });
+
+    it('formats negative Celsius values', () => {
+      expect(formatTemp(-10, 'C')).toBe('-10°C');
+    });
   });
 
   describe('Fahrenheit mode', () => {
@@ -75,10 +111,22 @@ describe('formatTemp', () => {
     ])('formats %d°C as %s in Fahrenheit', (tempC, expected) => {
       expect(formatTemp(tempC, 'F')).toBe(expected);
     });
+
+    it('formats negative Celsius values in Fahrenheit', () => {
+      expect(formatTemp(-10, 'F')).toBe('14°F');
+    });
+
+    it('handles fractional Celsius with proper rounding', () => {
+      expect(formatTemp(37.5, 'F')).toBe('100°F');
+    });
   });
 
   it('defaults to Celsius when no unit provided', () => {
     expect(formatTemp(20)).toBe('20°C');
+  });
+
+  it('falls back to Celsius for unknown unit', () => {
+    expect(formatTemp(20, 'K')).toBe('20°C');
   });
 });
 
@@ -91,6 +139,10 @@ describe('formatVolume', () => {
     ])('formats %d liters as %s', (volumeL, expected) => {
       expect(formatVolume(volumeL, 'L')).toBe(expected);
     });
+
+    it('formats zero volume', () => {
+      expect(formatVolume(0, 'L')).toBe('0L');
+    });
   });
 
   describe('Ounces mode', () => {
@@ -100,6 +152,14 @@ describe('formatVolume', () => {
 
     it('formats 0.5L as 16.9 oz', () => {
       expect(formatVolume(0.5, 'oz')).toBe('16.9 oz');
+    });
+
+    it('formats zero volume', () => {
+      expect(formatVolume(0, 'oz')).toBe('0 oz');
+    });
+
+    it('formats very small volumes with decimal precision', () => {
+      expect(formatVolume(0.1, 'oz')).toBe('3.4 oz');
     });
   });
 
@@ -117,6 +177,10 @@ describe('formatWeight', () => {
     ])('formats %dg as %s', (weightG, expected) => {
       expect(formatWeight(weightG, 'g')).toBe(expected);
     });
+
+    it('formats zero weight', () => {
+      expect(formatWeight(0, 'g')).toBe('0g');
+    });
   });
 
   describe('Ounces mode', () => {
@@ -126,6 +190,18 @@ describe('formatWeight', () => {
 
     it('formats 53g as 1.9oz', () => {
       expect(formatWeight(53, 'oz')).toBe('1.9oz');
+    });
+
+    it('formats zero weight', () => {
+      expect(formatWeight(0, 'oz')).toBe('0oz');
+    });
+
+    it('formats very small values (1g)', () => {
+      expect(formatWeight(1, 'oz')).toBe('0oz');
+    });
+
+    it('formats large values (1000g)', () => {
+      expect(formatWeight(1000, 'oz')).toBe('35.3oz');
     });
   });
 
@@ -143,6 +219,18 @@ describe('formatPressure', () => {
     ])('formats %d hPa as %s', (pressureHPa, expected) => {
       expect(formatPressure(pressureHPa, 'hPa')).toBe(expected);
     });
+
+    it('formats zero pressure', () => {
+      expect(formatPressure(0, 'hPa')).toBe('0 hPa');
+    });
+
+    it('formats very low pressure (300 hPa - extreme altitude)', () => {
+      expect(formatPressure(300, 'hPa')).toBe('300 hPa');
+    });
+
+    it('formats very high pressure (1050 hPa)', () => {
+      expect(formatPressure(1050, 'hPa')).toBe('1050 hPa');
+    });
   });
 
   describe('inHg mode', () => {
@@ -152,6 +240,14 @@ describe('formatPressure', () => {
 
     it('formats 1000 hPa as 29.53 inHg', () => {
       expect(formatPressure(1000, 'inHg')).toBe('29.53 inHg');
+    });
+
+    it('formats zero pressure', () => {
+      expect(formatPressure(0, 'inHg')).toBe('0 inHg');
+    });
+
+    it('formats with decimal precision for non-standard values', () => {
+      expect(formatPressure(987.65, 'inHg')).toBe('29.17 inHg');
     });
   });
 
