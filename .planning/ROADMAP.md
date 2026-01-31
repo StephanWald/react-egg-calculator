@@ -121,10 +121,13 @@ Plans:
   3. All 6 languages (EN, DE, FR, ES, IT, PT) render without breaking layout at mobile width
   4. All interactive elements meet 44x44px minimum touch target size
   5. Settings dialog responsive at mobile/tablet/desktop breakpoints
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 06-01: [Plan description pending]
+- [ ] 06-01-PLAN.md -- Foundation: fix Tailwind config, install deps, mobile base CSS, responsive main layout
+- [ ] 06-02-PLAN.md -- Responsive tile/button grids and touch targets in all 5 components
+- [ ] 06-03-PLAN.md -- ConfigDialog bottom drawer on mobile, TimerOverlay immersive mobile
+- [ ] 06-04-PLAN.md -- i18n translation testing at 320px, shortening overflows, human verification
 
 ### Phase 7: Quality & Polish
 **Goal**: Error handling, input validation, and accessibility meet production standards
@@ -153,5 +156,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
 | 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
 | 5. Component Extraction | 4/4 | Complete ✓ | 2026-01-31 |
-| 6. Mobile Responsiveness | 0/? | Not started | - |
+| 6. Mobile Responsiveness | 0/4 | In Progress | - |
 | 7. Quality & Polish | 0/? | Not started | - |
