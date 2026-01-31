@@ -25,7 +25,7 @@ export const ConsistencyPicker = ({
           <button
             key={option.id}
             onClick={() => onConsistencyChange(option)}
-            className={`p-3 min-h-[44px] rounded-xl border-2 transition-all ${
+            className={`p-3 min-h-[44px] rounded-xl border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
               consistency === option.id
                 ? 'border-amber-500 bg-amber-50 shadow-md'
                 : 'border-gray-200 hover:border-amber-300'

@@ -95,7 +95,7 @@ export function ResultDisplay({
       <button
         onClick={timerActive ? onStopTimer : onStartTimer}
         disabled={!cookingTime && !timerActive}
-        className="mt-4 w-full py-3 min-h-[44px] px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="mt-4 w-full py-3 min-h-[44px] px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
       >
         ⏱️ {timerActive ? t('timerStop') : t('timerStart')}
       </button>

@@ -49,7 +49,7 @@ export function EggInputs({
               <button
                 key={n}
                 onClick={() => onEggCountChange(n)}
-                className={`py-2 min-h-[44px] sm:flex-1 rounded-lg border-2 text-sm font-medium transition-all ${
+                className={`py-2 min-h-[44px] sm:flex-1 rounded-lg border-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
                   eggCount === n
                     ? 'border-amber-500 bg-amber-50'
                     : 'border-gray-200 hover:border-amber-300'
@@ -87,7 +87,7 @@ export function EggInputs({
             <button
               key={size.name}
               onClick={() => onWeightChange(size.weight)}
-              className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-center ${
+              className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
                 weight === size.weight
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'
@@ -118,7 +118,7 @@ export function EggInputs({
             <button
               key={option.nameKey}
               onClick={() => onStartTempChange(option.temp)}
-              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all flex items-center gap-2 sm:block sm:text-center ${
+              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all flex items-center gap-2 sm:block sm:text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
                 startTemp === option.temp
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'

@@ -76,7 +76,7 @@ export function LocationPressure({
         <button
           onClick={onGetLocation}
           disabled={locationLoading}
-          className="px-3 py-2 min-h-[44px] bg-sky-500 text-white text-xs sm:text-sm rounded-lg hover:bg-sky-600 disabled:opacity-50 transition-colors whitespace-nowrap"
+          className="px-3 py-2 min-h-[44px] bg-sky-500 text-white text-xs sm:text-sm rounded-lg hover:bg-sky-600 disabled:opacity-50 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
         >
           {locationLoading ? `⏳ ${t('detectingLocation')}` : `🛰️ ${t('gpsWeather')}`}
         </button>

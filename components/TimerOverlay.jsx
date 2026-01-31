@@ -50,7 +50,7 @@ export const TimerOverlay = ({
               <p className="text-gray-600 mb-6">{t('notificationBody')}</p>
               <button
                 onClick={onDismiss}
-                className="w-full py-4 min-h-[56px] px-6 bg-amber-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-amber-600 active:scale-95 transition-all"
+                className="w-full py-4 min-h-[56px] px-6 bg-amber-500 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-amber-600 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
               >
                 ✓ {t('timerDismiss')}
               </button>
@@ -68,10 +68,10 @@ export const TimerOverlay = ({
                 {/* Pause/Resume Button */}
                 <button
                   onClick={timerPaused ? onResume : onPause}
-                  className={`flex-1 py-4 min-h-[56px] px-4 sm:px-6 text-base sm:text-lg font-bold rounded-xl shadow-lg transition-all active:scale-95 ${
+                  className={`flex-1 py-4 min-h-[56px] px-4 sm:px-6 text-base sm:text-lg font-bold rounded-xl shadow-lg transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                     timerPaused
-                      ? 'bg-green-500 text-white hover:bg-green-600'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      ? 'bg-green-500 text-white hover:bg-green-600 focus-visible:ring-green-500'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300 focus-visible:ring-gray-500'
                   }`}
                 >
                   {timerPaused ? `▶ ${t('timerResume')}` : `⏸ ${t('timerPause')}`}
@@ -80,7 +80,7 @@ export const TimerOverlay = ({
                 {/* Stop Button */}
                 <button
                   onClick={onStop}
-                  className="flex-1 py-4 min-h-[56px] px-4 sm:px-6 bg-red-500 text-white text-base sm:text-lg font-bold rounded-xl shadow-lg hover:bg-red-600 active:scale-95 transition-all"
+                  className="flex-1 py-4 min-h-[56px] px-4 sm:px-6 bg-red-500 text-white text-base sm:text-lg font-bold rounded-xl shadow-lg hover:bg-red-600 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                 >
                   ⏹ {t('timerStop')}
                 </button>

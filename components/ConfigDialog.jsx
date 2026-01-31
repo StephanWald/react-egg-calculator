@@ -78,7 +78,7 @@ export const ConfigDialog = ({
             <h2 className="text-lg font-bold text-gray-800">⚙️ {t('configDialogTitle')}</h2>
             <button
               onClick={onClose}
-              className="p-2 min-h-[44px] min-w-[44px] hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-gray-700 flex items-center justify-center"
+              className="p-2 min-h-[44px] min-w-[44px] hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-gray-700 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
             >
               ✕
             </button>
@@ -89,7 +89,7 @@ export const ConfigDialog = ({
             <label className="block text-sm font-medium text-gray-700 mb-2">{t('configTempUnit')}</label>
             <button
               onClick={() => onTempUnitChange(tempUnit === 'C' ? 'F' : 'C')}
-              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
             >
               <span className={tempUnit === 'C' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>°C</span>
               <span className="text-gray-300 mx-2">|</span>
@@ -102,7 +102,7 @@ export const ConfigDialog = ({
             <label className="block text-sm font-medium text-gray-700 mb-2">{t('configVolumeUnit')}</label>
             <button
               onClick={() => onVolumeUnitChange(volumeUnit === 'L' ? 'oz' : 'L')}
-              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
             >
               <span className={volumeUnit === 'L' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>L</span>
               <span className="text-gray-300 mx-2">|</span>
@@ -115,7 +115,7 @@ export const ConfigDialog = ({
             <label className="block text-sm font-medium text-gray-700 mb-2">{t('configWeightUnit')}</label>
             <button
               onClick={() => onWeightUnitChange(weightUnit === 'g' ? 'oz' : 'g')}
-              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
             >
               <span className={weightUnit === 'g' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>g</span>
               <span className="text-gray-300 mx-2">|</span>
@@ -128,7 +128,7 @@ export const ConfigDialog = ({
             <label className="block text-sm font-medium text-gray-700 mb-2">{t('configPressureUnit')}</label>
             <button
               onClick={() => onPressureUnitChange(pressureUnit === 'hPa' ? 'inHg' : 'hPa')}
-              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+              className="w-full px-3 py-2 min-h-[44px] bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
             >
               <span className={pressureUnit === 'hPa' ? 'text-amber-600 border-b-2 border-amber-600 pb-0.5' : 'text-gray-400'}>hPa</span>
               <span className="text-gray-300 mx-2">|</span>
@@ -144,7 +144,7 @@ export const ConfigDialog = ({
                 <button
                   key={language.code}
                   onClick={() => onLanguageChange(language.code)}
-                  className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-sm flex flex-col items-center justify-center gap-0.5 ${
+                  className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-sm flex flex-col items-center justify-center gap-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
                     currentLanguage === language.code
                       ? 'border-amber-500 bg-amber-50'
                       : 'border-gray-200 hover:border-amber-300'

@@ -184,7 +184,7 @@ const EggCalculator = () => {
         {/* Header */}
         <div className="text-center mb-6 relative">
           <div className="absolute right-0 top-0">
-            <button onClick={() => setShowConfigDialog(!showConfigDialog)} className="p-2 min-h-[44px] min-w-[44px] bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg" title="Settings">⚙️</button>
+            <button onClick={() => setShowConfigDialog(!showConfigDialog)} className="p-2 min-h-[44px] min-w-[44px] bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2" title="Settings">⚙️</button>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-2 px-12 sm:px-0">🥚 {t('title')}</h1>
           <p className="text-amber-700 px-12 sm:px-0">{t('subtitle')}</p>
@@ -226,7 +226,7 @@ const EggCalculator = () => {
         )}
 
         {/* Settings Toggle */}
-        <button onClick={() => setShowSettings(!showSettings)} className="w-full mb-4 p-3 min-h-[44px] bg-white rounded-xl shadow-md flex items-center justify-between hover:bg-gray-50 transition-colors">
+        <button onClick={() => setShowSettings(!showSettings)} className="w-full mb-4 p-3 min-h-[44px] bg-white rounded-xl shadow-md flex items-center justify-between hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
           <span className="flex items-center gap-2 text-gray-700">
             <span>⚙️</span><span className="font-medium">{t('settingsToggle')}</span>
             {!showSettings && (<span className="text-sm text-gray-500">({t(STOVE_TYPES.find(s => s.id === stoveType)?.nameKey)}, {formatTemp(ambientTemp, tempUnit)})</span>)}
@@ -323,7 +323,7 @@ const EggCalculator = () => {
           </div>
 
           {/* Energy Section */}
-          <button onClick={() => setShowEnergy(!showEnergy)} className="w-full text-sm text-emerald-700 hover:text-emerald-900 py-2 min-h-[44px] flex items-center justify-center gap-2">
+          <button onClick={() => setShowEnergy(!showEnergy)} className="w-full text-sm text-emerald-700 hover:text-emerald-900 py-2 min-h-[44px] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
             {showEnergy ? '▼' : '▶'} {t('showEnergy')}
           </button>
           {showEnergy && totalEnergy && (
@@ -346,7 +346,7 @@ const EggCalculator = () => {
           )}
 
           {/* Formula Section */}
-          <button onClick={() => setShowAdvanced(!showAdvanced)} className="w-full text-sm text-amber-700 hover:text-amber-900 py-2 min-h-[44px] flex items-center justify-center gap-2">
+          <button onClick={() => setShowAdvanced(!showAdvanced)} className="w-full text-sm text-amber-700 hover:text-amber-900 py-2 min-h-[44px] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
             {showAdvanced ? '▼' : '▶'} {t('showFormulas')}
           </button>
           {showAdvanced && (

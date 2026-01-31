@@ -57,7 +57,7 @@ export function SettingsPanel({
             <button
               key={stove.id}
               onClick={() => onStoveTypeChange(stove.id)}
-              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all text-center ${
+              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
                 stoveType === stove.id
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'
@@ -191,7 +191,7 @@ export function SettingsPanel({
               onResetToDefaults();
             }
           }}
-          className="w-full py-3 min-h-[44px] px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm"
+          className="w-full py-3 min-h-[44px] px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
         >
           🔄 {t('resetToDefaults')}
         </button>
