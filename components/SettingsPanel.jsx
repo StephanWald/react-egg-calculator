@@ -52,12 +52,12 @@ export function SettingsPanel({
       {/* Stove Type */}
       <div className="mb-5">
         <label className="block text-sm font-medium text-gray-700 mb-2">{t('stoveType')}</label>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
           {STOVE_TYPES.map((stove) => (
             <button
               key={stove.id}
               onClick={() => onStoveTypeChange(stove.id)}
-              className={`p-2 rounded-lg border-2 transition-all text-center ${
+              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all text-center ${
                 stoveType === stove.id
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'
@@ -92,13 +92,13 @@ export function SettingsPanel({
       </div>
 
       {/* Pot Material & Weight */}
-      <div className="grid grid-cols-2 gap-4 mb-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-5">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">{t('potMaterial')}</label>
           <select
             value={potMaterial}
             onChange={(e) => onPotMaterialChange(e.target.value)}
-            className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            className="w-full p-2 text-base min-h-[44px] border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           >
             {POT_MATERIALS.map((mat) => (
               <option key={mat.id} value={mat.id}>{t(mat.nameKey)}</option>
@@ -125,7 +125,7 @@ export function SettingsPanel({
       <div className="mb-5">
         <label className="block text-sm font-medium text-gray-700 mb-2">{t('temperatures')}</label>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* Water Start Temp */}
           <div className="p-3 bg-blue-50 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
@@ -191,7 +191,7 @@ export function SettingsPanel({
               onResetToDefaults();
             }
           }}
-          className="w-full py-2 px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm"
+          className="w-full py-3 min-h-[44px] px-4 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors shadow-sm"
         >
           🔄 {t('resetToDefaults')}
         </button>

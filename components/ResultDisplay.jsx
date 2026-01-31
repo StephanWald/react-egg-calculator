@@ -52,10 +52,10 @@ export function ResultDisplay({
 
   return (
     <div className="flex flex-col items-center mb-6">
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
         {getEggVisualization()}
         <div className="text-center">
-          <div className="text-5xl font-bold text-amber-600 tabular-nums">
+          <div className="text-5xl sm:text-6xl font-bold text-amber-600 tabular-nums">
             {formatTime(cookingTime)}
           </div>
           <div className="text-amber-800 mt-1">{t('cookingTime')}</div>
@@ -95,7 +95,7 @@ export function ResultDisplay({
       <button
         onClick={timerActive ? onStopTimer : onStartTimer}
         disabled={!cookingTime && !timerActive}
-        className="mt-4 w-full py-3 px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="mt-4 w-full py-3 min-h-[44px] px-6 bg-amber-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         ⏱️ {timerActive ? t('timerStop') : t('timerStart')}
       </button>

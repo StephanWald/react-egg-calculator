@@ -46,7 +46,7 @@ export function LocationPressure({
         <button
           onClick={onGetLocation}
           disabled={locationLoading}
-          className="px-3 py-1 bg-sky-500 text-white text-sm rounded-lg hover:bg-sky-600 disabled:opacity-50 transition-colors"
+          className="px-3 py-2 min-h-[44px] bg-sky-500 text-white text-xs sm:text-sm rounded-lg hover:bg-sky-600 disabled:opacity-50 transition-colors whitespace-nowrap"
         >
           {locationLoading ? `⏳ ${t('detectingLocation')}` : `🛰️ ${t('gpsWeather')}`}
         </button>
@@ -56,7 +56,7 @@ export function LocationPressure({
         <div className="text-xs text-red-600 mb-2">{locationErrorMessage}</div>
       )}
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <div>
           <div className="text-xs text-sky-700 mb-1">{t('airPressure')}</div>
           <div className="flex items-center gap-2">
@@ -64,7 +64,7 @@ export function LocationPressure({
               type="number"
               value={pressure}
               onChange={(e) => onPressureChange(Number(e.target.value))}
-              className="w-full px-2 py-1.5 border border-sky-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="w-full px-2 py-2 text-base min-h-[44px] border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
             <span className="text-xs text-sky-700 font-medium whitespace-nowrap">{formatPressure(pressure, pressureUnit)}</span>
           </div>
