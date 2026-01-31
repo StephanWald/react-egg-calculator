@@ -144,14 +144,14 @@ export const ConfigDialog = ({
                 <button
                   key={language.code}
                   onClick={() => onLanguageChange(language.code)}
-                  className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-sm ${
+                  className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-sm flex flex-col items-center justify-center gap-0.5 ${
                     currentLanguage === language.code
                       ? 'border-amber-500 bg-amber-50'
                       : 'border-gray-200 hover:border-amber-300'
                   }`}
                 >
-                  <span className="mr-1">{language.flag}</span>
-                  <span>{language.name}</span>
+                  <span className="text-base leading-none">{language.flag}</span>
+                  <span className="text-xs leading-tight">{language.name}</span>
                 </button>
               ))}
             </div>
