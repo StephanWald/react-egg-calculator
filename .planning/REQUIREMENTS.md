@@ -30,9 +30,9 @@ Requirements for hardening milestone. Each maps to roadmap phases.
 
 ### Error Handling & Polish
 
-- [ ] **QUAL-01**: Error boundaries wrap major sections to prevent white-screen crashes
-- [ ] **QUAL-02**: Input validation prevents invalid physics calculations (range checks on temperature hierarchy, weight > 0, pressure bounds)
-- [ ] **QUAL-03**: Keyboard navigation functional with correct tab order, visible focus indicators, and no keyboard traps
+- [x] **QUAL-01**: Error boundaries wrap major sections to prevent white-screen crashes
+- [x] **QUAL-02**: Input validation prevents invalid physics calculations (range checks on temperature hierarchy, weight > 0, pressure bounds)
+- [x] **QUAL-03**: Keyboard navigation functional with correct tab order, visible focus indicators, and no keyboard traps
 
 ## v2 Requirements
 
@@ -96,9 +96,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MOBI-02 | Phase 6 | Complete |
 | MOBI-03 | Phase 6 | Complete |
 | MOBI-04 | Phase 6 | Complete |
-| QUAL-01 | Phase 7 | Pending |
-| QUAL-02 | Phase 7 | Pending |
-| QUAL-03 | Phase 7 | Pending |
+| QUAL-01 | Phase 7 | Complete |
+| QUAL-02 | Phase 7 | Complete |
+| QUAL-03 | Phase 7 | Complete |
 
 **Coverage:**
 - v1 requirements: 15 total
@@ -107,4 +107,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 6 completion*
+*Last updated: 2026-01-31 after Phase 7 completion*
