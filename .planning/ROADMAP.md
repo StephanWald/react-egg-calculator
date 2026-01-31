@@ -103,10 +103,13 @@ Plans:
   7. ConfigDialog component extracted with settings props
   8. Main EggCalculator component reduced to under 400 lines
   9. Formatter functions have unit tests for all format types (temp, volume, weight, pressure, time)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 05-01: [Plan description pending]
+- [ ] 05-01-PLAN.md -- Fill formatter test coverage gaps for all format types
+- [ ] 05-02-PLAN.md -- Extract ConfigDialog, TimerOverlay, ConsistencyPicker components
+- [ ] 05-03-PLAN.md -- Extract SettingsPanel, LocationPressure, EggInputs, ResultDisplay components
+- [ ] 05-04-PLAN.md -- Rewire EggCalculator to use all 7 components, verify parity
 
 ### Phase 6: Mobile Responsiveness
 **Goal**: App works without overflow or layout breaks on all mobile viewports
@@ -149,6 +152,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
 | 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
-| 5. Component Extraction | 0/? | Not started | - |
+| 5. Component Extraction | 0/4 | Not started | - |
 | 6. Mobile Responsiveness | 0/? | Not started | - |
 | 7. Quality & Polish | 0/? | Not started | - |
