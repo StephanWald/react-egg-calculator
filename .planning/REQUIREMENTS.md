@@ -12,14 +12,14 @@ Requirements for hardening milestone. Each maps to roadmap phases.
 - [x] **TEST-01**: Physics calculations have unit tests covering Williams formula, boiling point from pressure, pressure from boiling point, altitude from pressure, and energy consumption
 - [ ] **TEST-02**: Formatter functions have unit tests for temperature, volume, weight, pressure, and time display formatting
 - [x] **TEST-03**: Vitest test infrastructure configured with jsdom, coverage reporting (v8), and watch mode
-- [ ] **TEST-04**: Custom hooks have tests for timer logic, location/pressure detection, settings persistence, and unit conversion
+- [x] **TEST-04**: Custom hooks have tests for timer logic, location/pressure detection, settings persistence, and unit conversion
 
 ### Refactoring
 
 - [x] **REFAC-01**: Physics calculations extracted into pure functions in dedicated module (independently importable, no React dependency)
 - [x] **REFAC-02**: Formatting/conversion utilities and constants extracted into separate modules
 - [ ] **REFAC-03**: UI sections extracted into focused components (SettingsPanel, TimerOverlay, ConsistencyPicker, ResultDisplay, EggInputs, LocationPressure, ConfigDialog)
-- [ ] **REFAC-04**: API integrations extracted into service modules (Open-Meteo pressure, Nominatim geocoding)
+- [x] **REFAC-04**: API integrations extracted into service modules (Open-Meteo pressure, Nominatim geocoding)
 
 ### Mobile Responsiveness
 
@@ -87,11 +87,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TEST-01 | Phase 2 | Complete |
 | TEST-02 | Phase 5 | Pending |
 | TEST-03 | Phase 1 | Complete |
-| TEST-04 | Phase 4 | Pending |
+| TEST-04 | Phase 4 | Complete |
 | REFAC-01 | Phase 3 | Complete |
 | REFAC-02 | Phase 3 | Complete |
 | REFAC-03 | Phase 5 | Pending |
-| REFAC-04 | Phase 4 | Pending |
+| REFAC-04 | Phase 4 | Complete |
 | MOBI-01 | Phase 6 | Pending |
 | MOBI-02 | Phase 6 | Pending |
 | MOBI-03 | Phase 6 | Pending |
@@ -107,4 +107,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-30 after Phase 3 completion*
+*Last updated: 2026-01-31 after Phase 4 completion*
