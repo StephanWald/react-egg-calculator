@@ -177,15 +177,15 @@ const EggCalculator = () => {
   // ============ RENDER ============
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 p-4 md:p-8">
+    <div className="min-h-dvh bg-gradient-to-br from-amber-50 to-orange-100 p-3 sm:p-4 md:p-8">
       <div className="max-w-2xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-6 relative">
           <div className="absolute right-0 top-0">
-            <button onClick={() => setShowConfigDialog(!showConfigDialog)} className="p-2 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg" title="Settings">⚙️</button>
+            <button onClick={() => setShowConfigDialog(!showConfigDialog)} className="p-2 min-h-[44px] min-w-[44px] bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg" title="Settings">⚙️</button>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
           <p className="text-amber-700">{t('subtitle')}</p>
         </div>
 
@@ -221,7 +221,7 @@ const EggCalculator = () => {
         )}
 
         {/* Settings Toggle */}
-        <button onClick={() => setShowSettings(!showSettings)} className="w-full mb-4 p-3 bg-white rounded-xl shadow-md flex items-center justify-between hover:bg-gray-50 transition-colors">
+        <button onClick={() => setShowSettings(!showSettings)} className="w-full mb-4 p-3 min-h-[44px] bg-white rounded-xl shadow-md flex items-center justify-between hover:bg-gray-50 transition-colors">
           <span className="flex items-center gap-2 text-gray-700">
             <span>⚙️</span><span className="font-medium">{t('settingsToggle')}</span>
             {!showSettings && (<span className="text-sm text-gray-500">({t(STOVE_TYPES.find(s => s.id === stoveType)?.nameKey)}, {formatTemp(ambientTemp, tempUnit)})</span>)}
@@ -251,7 +251,7 @@ const EggCalculator = () => {
         )}
 
         {/* ============ MAIN CARD ============ */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
 
           {/* Result Display */}
           <ResultDisplay
@@ -309,22 +309,22 @@ const EggCalculator = () => {
           <div className="mb-5 space-y-2">
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
               <div className="flex gap-2 items-start"><span className="text-lg">⚠️</span>
-                <div className="text-sm text-amber-800"><strong>{t('noticeImportant')}:</strong> {t('noticeCoverage')}</div></div>
+                <div className="text-xs sm:text-sm text-amber-800"><strong>{t('noticeImportant')}:</strong> {t('noticeCoverage')}</div></div>
             </div>
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex gap-2 items-start"><span className="text-lg">🫕</span>
-                <div className="text-sm text-green-800"><strong>{t('noticeLid')}</strong> {t('noticeLidHint')}</div></div>
+                <div className="text-xs sm:text-sm text-green-800"><strong>{t('noticeLid')}</strong> {t('noticeLidHint')}</div></div>
             </div>
           </div>
 
           {/* Energy Section */}
-          <button onClick={() => setShowEnergy(!showEnergy)} className="w-full text-sm text-emerald-700 hover:text-emerald-900 py-2 flex items-center justify-center gap-2">
+          <button onClick={() => setShowEnergy(!showEnergy)} className="w-full text-sm text-emerald-700 hover:text-emerald-900 py-2 min-h-[44px] flex items-center justify-center gap-2">
             {showEnergy ? '▼' : '▶'} {t('showEnergy')}
           </button>
           {showEnergy && totalEnergy && (
             <div className="mt-3 p-4 bg-emerald-50 rounded-xl">
               <h3 className="font-medium text-emerald-800 mb-3">⚡ {t('energyTitle')}</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div className="bg-white p-3 rounded-lg">
                   <div className="text-emerald-600 text-xs">{t('heatingPhase')} ({formatTemp(waterStartTemp, tempUnit)} → {formatTemp(boilingPoint, tempUnit)})</div>
                   <div className="text-xl font-bold text-emerald-800">~{heatingTime} min</div>
@@ -341,7 +341,7 @@ const EggCalculator = () => {
           )}
 
           {/* Formula Section */}
-          <button onClick={() => setShowAdvanced(!showAdvanced)} className="w-full text-sm text-amber-700 hover:text-amber-900 py-2 flex items-center justify-center gap-2">
+          <button onClick={() => setShowAdvanced(!showAdvanced)} className="w-full text-sm text-amber-700 hover:text-amber-900 py-2 min-h-[44px] flex items-center justify-center gap-2">
             {showAdvanced ? '▼' : '▶'} {t('showFormulas')}
           </button>
           {showAdvanced && (
