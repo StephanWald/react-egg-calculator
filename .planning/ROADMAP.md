@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Physics Validation** - Unit tests prove calculations correct before refactoring
 - [x] **Phase 3: Utilities Extraction** - Pure functions (physics, formatters, constants) extracted
 - [x] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
-- [ ] **Phase 5: Component Extraction** - UI sections split into focused components
+- [x] **Phase 5: Component Extraction** - UI sections split into focused components
 - [ ] **Phase 6: Mobile Responsiveness** - Fix overflows, touch targets, i18n layout issues
 - [ ] **Phase 7: Quality & Polish** - Error boundaries, validation, keyboard navigation
 
@@ -106,10 +106,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-01-PLAN.md -- Fill formatter test coverage gaps for all format types
-- [ ] 05-02-PLAN.md -- Extract ConfigDialog, TimerOverlay, ConsistencyPicker components
-- [ ] 05-03-PLAN.md -- Extract SettingsPanel, LocationPressure, EggInputs, ResultDisplay components
-- [ ] 05-04-PLAN.md -- Rewire EggCalculator to use all 7 components, verify parity
+- [x] 05-01-PLAN.md -- Fill formatter test coverage gaps for all format types
+- [x] 05-02-PLAN.md -- Extract ConfigDialog, TimerOverlay, ConsistencyPicker components
+- [x] 05-03-PLAN.md -- Extract SettingsPanel, LocationPressure, EggInputs, ResultDisplay components
+- [x] 05-04-PLAN.md -- Rewire EggCalculator to use all 7 components, verify parity
 
 ### Phase 6: Mobile Responsiveness
 **Goal**: App works without overflow or layout breaks on all mobile viewports
@@ -152,6 +152,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
 | 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
-| 5. Component Extraction | 0/4 | Not started | - |
+| 5. Component Extraction | 4/4 | Complete ✓ | 2026-01-31 |
 | 6. Mobile Responsiveness | 0/? | Not started | - |
 | 7. Quality & Polish | 0/? | Not started | - |
