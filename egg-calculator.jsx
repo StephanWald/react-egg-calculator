@@ -9,6 +9,7 @@ import { useSettings } from './hooks/useSettings';
 import { useUnitConversion } from './hooks/useUnitConversion';
 import { useTimerLogic } from './hooks/useTimerLogic';
 import { useLocationPressure } from './hooks/useLocationPressure';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { ConfigDialog } from './components/ConfigDialog';
 import { TimerOverlay } from './components/TimerOverlay';
 import { ConsistencyPicker } from './components/ConsistencyPicker';
@@ -190,34 +191,38 @@ const EggCalculator = () => {
         </div>
 
         {/* ============ CONFIG DIALOG ============ */}
-        <ConfigDialog
-          visible={showConfigDialog}
-          onClose={() => setShowConfigDialog(false)}
-          tempUnit={tempUnit}
-          volumeUnit={volumeUnit}
-          weightUnit={weightUnit}
-          pressureUnit={pressureUnit}
-          onTempUnitChange={handleTempUnitChange}
-          onVolumeUnitChange={handleVolumeUnitChange}
-          onWeightUnitChange={handleWeightUnitChange}
-          onPressureUnitChange={handlePressureUnitChange}
-          languages={languages}
-          currentLanguage={lang}
-          onLanguageChange={setLanguage}
-        />
+        <ErrorBoundary fallback={<div className="p-4 text-sm text-gray-500 text-center">{t('configDialogTitle')} unavailable</div>}>
+          <ConfigDialog
+            visible={showConfigDialog}
+            onClose={() => setShowConfigDialog(false)}
+            tempUnit={tempUnit}
+            volumeUnit={volumeUnit}
+            weightUnit={weightUnit}
+            pressureUnit={pressureUnit}
+            onTempUnitChange={handleTempUnitChange}
+            onVolumeUnitChange={handleVolumeUnitChange}
+            onWeightUnitChange={handleWeightUnitChange}
+            onPressureUnitChange={handlePressureUnitChange}
+            languages={languages}
+            currentLanguage={lang}
+            onLanguageChange={setLanguage}
+          />
+        </ErrorBoundary>
 
         {/* ============ TIMER OVERLAY ============ */}
         {(timerActive || timerComplete) && (
-          <TimerOverlay
-            timerActive={timerActive}
-            timerComplete={timerComplete}
-            timerPaused={timerPaused}
-            timerRemaining={timerRemaining}
-            onPause={pauseTimer}
-            onResume={resumeTimer}
-            onStop={stopTimer}
-            onDismiss={dismissComplete}
-          />
+          <ErrorBoundary fallback={<div className="fixed inset-0 z-50 flex items-center justify-center"><div className="p-6 bg-white rounded-2xl shadow-xl text-center"><p className="text-gray-700">Timer unavailable</p><button onClick={stopTimer} className="mt-4 px-4 py-2 bg-amber-500 text-white rounded-lg">Close</button></div></div>}>
+            <TimerOverlay
+              timerActive={timerActive}
+              timerComplete={timerComplete}
+              timerPaused={timerPaused}
+              timerRemaining={timerRemaining}
+              onPause={pauseTimer}
+              onResume={resumeTimer}
+              onStop={stopTimer}
+              onDismiss={dismissComplete}
+            />
+          </ErrorBoundary>
         )}
 
         {/* Settings Toggle */}
