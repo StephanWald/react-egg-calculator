@@ -185,8 +185,8 @@ const EggCalculator = () => {
           <div className="absolute right-0 top-0">
             <button onClick={() => setShowConfigDialog(!showConfigDialog)} className="p-2 min-h-[44px] min-w-[44px] bg-white rounded-lg shadow-md hover:bg-gray-50 transition-colors text-lg" title="Settings">⚙️</button>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-2">🥚 {t('title')}</h1>
-          <p className="text-amber-700">{t('subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-2 px-12 sm:px-0">🥚 {t('title')}</h1>
+          <p className="text-amber-700 px-12 sm:px-0">{t('subtitle')}</p>
         </div>
 
         {/* ============ CONFIG DIALOG ============ */}
