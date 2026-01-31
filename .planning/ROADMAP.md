@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Utilities Extraction** - Pure functions (physics, formatters, constants) extracted
 - [x] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
 - [x] **Phase 5: Component Extraction** - UI sections split into focused components
-- [ ] **Phase 6: Mobile Responsiveness** - Fix overflows, touch targets, i18n layout issues
+- [x] **Phase 6: Mobile Responsiveness** - Fix overflows, touch targets, i18n layout issues
 - [ ] **Phase 7: Quality & Polish** - Error boundaries, validation, keyboard navigation
 
 ## Phase Details
@@ -124,10 +124,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 06-01-PLAN.md -- Foundation: fix Tailwind config, install deps, mobile base CSS, responsive main layout
-- [ ] 06-02-PLAN.md -- Responsive tile/button grids and touch targets in all 5 components
-- [ ] 06-03-PLAN.md -- ConfigDialog bottom drawer on mobile, TimerOverlay immersive mobile
-- [ ] 06-04-PLAN.md -- i18n translation testing at 320px, shortening overflows, human verification
+- [x] 06-01-PLAN.md -- Foundation: fix Tailwind config, install deps, mobile base CSS, responsive main layout
+- [x] 06-02-PLAN.md -- Responsive tile/button grids and touch targets in all 5 components
+- [x] 06-03-PLAN.md -- ConfigDialog bottom drawer on mobile, TimerOverlay immersive mobile
+- [x] 06-04-PLAN.md -- i18n translation testing at 320px, shortening overflows, human verification
 
 ### Phase 7: Quality & Polish
 **Goal**: Error handling, input validation, and accessibility meet production standards
@@ -156,5 +156,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
 | 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
 | 5. Component Extraction | 4/4 | Complete ✓ | 2026-01-31 |
-| 6. Mobile Responsiveness | 0/4 | In Progress | - |
+| 6. Mobile Responsiveness | 4/4 | Complete ✓ | 2026-01-31 |
 | 7. Quality & Polish | 0/? | Not started | - |

@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** Accurate egg cooking times based on real physics — thermodynamic calculations must remain correct through all refactoring
-**Current focus:** Mobile Responsiveness (Phase 6) -- IN PROGRESS
+**Current focus:** Mobile Responsiveness (Phase 6) -- COMPLETE
 
 ## Current Position
 
 Phase: 6 of 7 (Mobile Responsiveness)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-01-31 — Completed 06-03-PLAN.md
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-01-31 — Completed 06-04-PLAN.md (human verified)
 
-Progress: [█████████████░] 94% (15/16 plans complete)
+Progress: [████████████████] 100% (16/16 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15
-- Average duration: 2.5 min
-- Total execution time: 0.6 hours
+- Total plans completed: 16
+- Average duration: 2.6 min
+- Total execution time: 0.7 hours
 
 **By Phase:**
 
@@ -32,11 +32,11 @@ Progress: [█████████████░] 94% (15/16 plans complete
 | 03 Utilities Extraction | 2 | 6 min | 3 min |
 | 04 Services & Hooks | 3 | 8 min | 2.7 min |
 | 05 Component Extraction | 4 | 12 min | 3 min |
-| 06 Mobile Responsiveness | 3 | 9 min | 3 min |
+| 06 Mobile Responsiveness | 4 | 14 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-04 (6 min), 06-01 (2 min), 06-02 (4 min), 06-03 (3 min)
-- Trend: Consistent 2-4 min plans, integration plans slightly longer
+- Last 5 plans: 06-01 (2 min), 06-02 (4 min), 06-03 (3 min), 06-04 (5 min)
+- Trend: Consistent 2-5 min plans, checkpoint plans slightly longer due to human interaction
 
 *Updated after each plan completion*
 
@@ -89,6 +89,9 @@ Recent decisions affecting current work:
 - Swipe-to-dismiss with velocity threshold: Prevents accidental dismissal, requires intent (Implemented - 06-03)
 - 56px touch targets for primary actions: Timer controls are critical during cooking, deserve larger targets (Implemented - 06-03)
 - Body scroll lock on overlays: Standard overlay UX pattern, prevents background scrolling (Implemented - 06-03)
+- Shorten stove type labels to single word: Fits 2-col mobile tile grid at 320px (Implemented - 06-04)
+- Stacked language button layout: Flag above name for consistent height across all 6 languages (Implemented - 06-04)
+- px-12 header padding on mobile: Clears absolutely-positioned cogwheel button (Implemented - 06-04)
 
 ### Pending Todos
 
@@ -101,6 +104,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-31
-Stopped at: Completed 06-02-PLAN.md
+Stopped at: Phase 6 complete, human verified
 Resume file: None
-Next: Continue Phase 06 (Mobile Responsiveness) — execute 06-03, 06-04
+Next: Phase 06 verification, then Phase 07 (Quality & Polish)

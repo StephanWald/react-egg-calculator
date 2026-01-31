@@ -23,10 +23,10 @@ Requirements for hardening milestone. Each maps to roadmap phases.
 
 ### Mobile Responsiveness
 
-- [ ] **MOBI-01**: Tile/button groups (stove type, consistency, temperature, egg size selectors) do not overflow on mobile screens
-- [ ] **MOBI-02**: No horizontal scroll at 320px viewport width across all pages and states
-- [ ] **MOBI-03**: i18n text in all 6 languages (EN, DE, FR, ES, IT, PT) does not break layout at any viewport size
-- [ ] **MOBI-04**: All interactive elements meet 44x44px minimum touch target size
+- [x] **MOBI-01**: Tile/button groups (stove type, consistency, temperature, egg size selectors) do not overflow on mobile screens
+- [x] **MOBI-02**: No horizontal scroll at 320px viewport width across all pages and states
+- [x] **MOBI-03**: i18n text in all 6 languages (EN, DE, FR, ES, IT, PT) does not break layout at any viewport size
+- [x] **MOBI-04**: All interactive elements meet 44x44px minimum touch target size
 
 ### Error Handling & Polish
 
@@ -92,10 +92,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | REFAC-02 | Phase 3 | Complete |
 | REFAC-03 | Phase 5 | Complete |
 | REFAC-04 | Phase 4 | Complete |
-| MOBI-01 | Phase 6 | Pending |
-| MOBI-02 | Phase 6 | Pending |
-| MOBI-03 | Phase 6 | Pending |
-| MOBI-04 | Phase 6 | Pending |
+| MOBI-01 | Phase 6 | Complete |
+| MOBI-02 | Phase 6 | Complete |
+| MOBI-03 | Phase 6 | Complete |
+| MOBI-04 | Phase 6 | Complete |
 | QUAL-01 | Phase 7 | Pending |
 | QUAL-02 | Phase 7 | Pending |
 | QUAL-03 | Phase 7 | Pending |
@@ -107,4 +107,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 5 completion*
+*Last updated: 2026-01-31 after Phase 6 completion*
