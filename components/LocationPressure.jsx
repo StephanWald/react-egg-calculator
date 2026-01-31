@@ -37,6 +37,36 @@ export function LocationPressure({
 }) {
   const { t } = useTranslation();
 
+  // Pressure input clamping constants (physics-valid range)
+  const MIN_PRESSURE = 870;  // Extreme low (hurricane at ~1400m)
+  const MAX_PRESSURE = 1084; // Record high
+  const STANDARD_PRESSURE = 1013.25; // Standard atmosphere
+
+  // Handle pressure input with silent clamping
+  const handlePressureChange = (e) => {
+    const val = e.target.value;
+
+    // Allow empty string while user is typing
+    if (val === '') {
+      onPressureChange('');
+      return;
+    }
+
+    const numVal = Number(val);
+    if (!isNaN(numVal)) {
+      // Clamp to valid physics range
+      const clamped = Math.max(MIN_PRESSURE, Math.min(MAX_PRESSURE, numVal));
+      onPressureChange(clamped);
+    }
+  };
+
+  // Reset to standard atmosphere if empty on blur
+  const handlePressureBlur = () => {
+    if (pressure === '' || isNaN(Number(pressure))) {
+      onPressureChange(STANDARD_PRESSURE);
+    }
+  };
+
   return (
     <div className="mb-5 p-4 bg-gradient-to-r from-sky-50 to-blue-50 rounded-xl border border-sky-200">
       <div className="flex items-center justify-between mb-3">
@@ -63,7 +93,10 @@ export function LocationPressure({
             <input
               type="number"
               value={pressure}
-              onChange={(e) => onPressureChange(Number(e.target.value))}
+              onChange={handlePressureChange}
+              onBlur={handlePressureBlur}
+              min={MIN_PRESSURE}
+              max={MAX_PRESSURE}
               className="w-full px-2 py-2 text-base min-h-[44px] border border-sky-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
             <span className="text-xs text-sky-700 font-medium whitespace-nowrap">{formatPressure(pressure, pressureUnit)}</span>
