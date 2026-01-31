@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Test Infrastructure** - Vitest/RTL setup with coverage and watch mode
 - [x] **Phase 2: Physics Validation** - Unit tests prove calculations correct before refactoring
 - [x] **Phase 3: Utilities Extraction** - Pure functions (physics, formatters, constants) extracted
-- [ ] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
+- [x] **Phase 4: Services & Hooks** - API services and custom hooks extracted from component
 - [ ] **Phase 5: Component Extraction** - UI sections split into focused components
 - [ ] **Phase 6: Mobile Responsiveness** - Fix overflows, touch targets, i18n layout issues
 - [ ] **Phase 7: Quality & Polish** - Error boundaries, validation, keyboard navigation
@@ -85,9 +85,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- API services + useSettings + useUnitConversion with tests
-- [ ] 04-02-PLAN.md -- useTimerLogic + useLocationPressure hooks with tests
-- [ ] 04-03-PLAN.md -- Rewire component to use all hooks, verify parity
+- [x] 04-01-PLAN.md -- API services + useSettings + useUnitConversion with tests
+- [x] 04-02-PLAN.md -- useTimerLogic + useLocationPressure hooks with tests
+- [x] 04-03-PLAN.md -- Rewire component to use all hooks, verify parity
 
 ### Phase 5: Component Extraction
 **Goal**: UI sections extracted into focused components under 400 lines each
@@ -148,7 +148,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Test Infrastructure | 1/1 | Complete ✓ | 2026-01-30 |
 | 2. Physics Validation | 2/2 | Complete ✓ | 2026-01-30 |
 | 3. Utilities Extraction | 2/2 | Complete ✓ | 2026-01-30 |
-| 4. Services & Hooks | 0/3 | Not started | - |
+| 4. Services & Hooks | 3/3 | Complete ✓ | 2026-01-31 |
 | 5. Component Extraction | 0/? | Not started | - |
 | 6. Mobile Responsiveness | 0/? | Not started | - |
 | 7. Quality & Polish | 0/? | Not started | - |
