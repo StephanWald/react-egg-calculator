@@ -39,17 +39,17 @@ export function EggInputs({
   return (
     <>
       {/* Egg Count & Water Volume */}
-      <div className="grid grid-cols-2 gap-4 mb-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-5">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t('eggCount')}: <span className="font-bold text-amber-600">{eggCount}</span>
           </label>
-          <div className="flex gap-1">
+          <div className="grid grid-cols-4 gap-1.5 sm:flex sm:gap-1">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
               <button
                 key={n}
                 onClick={() => onEggCountChange(n)}
-                className={`flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all ${
+                className={`py-2 min-h-[44px] sm:flex-1 rounded-lg border-2 text-sm font-medium transition-all ${
                   eggCount === n
                     ? 'border-amber-500 bg-amber-50'
                     : 'border-gray-200 hover:border-amber-300'
@@ -82,12 +82,12 @@ export function EggInputs({
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('eggSize')}: <span className="font-bold text-amber-600">{formatWeight(weight, weightUnit)}</span>
         </label>
-        <div className="grid grid-cols-4 gap-2 mb-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 mb-2">
           {EGG_SIZES.map((size) => (
             <button
               key={size.name}
               onClick={() => onWeightChange(size.weight)}
-              className={`p-2 rounded-lg border-2 transition-all text-center ${
+              className={`p-2 min-h-[44px] rounded-lg border-2 transition-all text-center ${
                 weight === size.weight
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'
@@ -113,20 +113,22 @@ export function EggInputs({
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('startTemp')}: <span className="font-bold text-amber-600">{formatTemp(startTemp, tempUnit)}</span>
         </label>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {START_TEMP_OPTIONS.map((option) => (
             <button
               key={option.nameKey}
               onClick={() => onStartTempChange(option.temp)}
-              className={`p-2 rounded-lg border-2 transition-all ${
+              className={`p-3 min-h-[44px] rounded-lg border-2 transition-all flex items-center gap-2 sm:block sm:text-center ${
                 startTemp === option.temp
                   ? 'border-amber-500 bg-amber-50'
                   : 'border-gray-200 hover:border-amber-300'
               }`}
             >
-              <div className="text-xl mb-1">{option.icon}</div>
-              <div className="text-xs font-medium">{t(option.nameKey)}</div>
-              <div className="text-xs text-gray-500">{formatTemp(option.temp, tempUnit)}</div>
+              <div className="text-xl sm:mb-1">{option.icon}</div>
+              <div>
+                <div className="text-xs font-medium">{t(option.nameKey)}</div>
+                <div className="text-xs text-gray-500">{formatTemp(option.temp, tempUnit)}</div>
+              </div>
             </button>
           ))}
         </div>

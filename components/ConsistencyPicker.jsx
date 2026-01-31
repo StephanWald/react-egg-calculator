@@ -20,12 +20,12 @@ export const ConsistencyPicker = ({
   return (
     <div className="mb-5">
       <label className="block text-sm font-medium text-gray-700 mb-2">{t('consistency')}</label>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {CONSISTENCY_OPTIONS.map((option) => (
           <button
             key={option.id}
             onClick={() => onConsistencyChange(option)}
-            className={`p-2 rounded-xl border-2 transition-all ${
+            className={`p-3 min-h-[44px] rounded-xl border-2 transition-all ${
               consistency === option.id
                 ? 'border-amber-500 bg-amber-50 shadow-md'
                 : 'border-gray-200 hover:border-amber-300'
